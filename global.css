@@ -1,0 +1,81 @@
+/* Global site styling for all pages */
+
+/* Page layout */
+body {
+  background-color: #cfe8ff; /* light blue */
+  color: #333333; /* dark grey */
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* HEADER LAYOUT -------------------------------------------------- */
+header {
+  background-color: #cfe8ff;
+  padding: 15px 25px;
+  border-bottom: 2px solid #b0d4ff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* LEFT SECTION */
+.left-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-img {
+  height: 50px;
+  width: auto;
+  object-fit: contain;
+}
+
+.logo {
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: #333;
+  text-decoration: none;
+}
+
+/* CENTER NAV */
+.center-nav a {
+  margin: 0 15px;
+  text-decoration: none;
+  font-weight: 500;
+  color: #333;
+}
+
+.center-nav a:hover {
+  text-decoration: underline;
+}
+
+/* RIGHT NAV */
+.right-nav {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.right-nav a {
+  text-decoration: none;
+  font-weight: 500;
+  color: #333;
+}
+
+.right-nav a:hover {
+  text-decoration: underline;
+}
+
+.divider {
+  color: #555;
+  font-weight: bold;
+}
+
+/* Page content */
+main {
+  padding: 40px;
+  max-width: 800px;
+  margin: auto;
+}
