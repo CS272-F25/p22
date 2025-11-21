@@ -29,6 +29,9 @@ async function loadAPIFlashcards() {
     // Render first card using app.js function
     displayCard();
 
+    // enable "jump to question" clicking
+    setupQuestionJumping();
+
   } catch (err) {
     frontDiv.textContent = "Error loading questions.";
   }
@@ -44,3 +47,29 @@ flashcards = [];   // clear any old local saved data
 
 // Fetch questions instead of using localStorage
 loadAPIFlashcards();
+
+function setMode(mode) {
+  const rightTitle = document.getElementById("right-title");
+
+  if (mode === "flashcards") rightTitle.textContent = "Cards";
+  else if (mode === "learn") rightTitle.textContent = "Notes";
+  else if (mode === "quiz") rightTitle.textContent = "Questions";
+}
+
+// Jump to a specific flashcard when clicking “Question X”
+function setupQuestionJumping() {
+    const items = document.querySelectorAll(".question-item");
+
+    items.forEach(item => {
+        item.addEventListener("click", () => {
+            const index = parseInt(item.dataset.index);
+
+            // update global flashcard index
+            currentIndex = index;
+
+            // show that card
+            displayCard();
+        });
+    });
+}
+

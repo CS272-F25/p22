@@ -6,7 +6,7 @@
 }
 
 #flashcard {
-    max-width: 30rem;
+    max-width: 40rem;
     margin: 2rem auto;
     padding: 2rem;
     border: 0.1rem solid;
@@ -14,7 +14,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 12rem;
+    min-height: 18rem;
     text-align: center;
     font-size: 1.4rem;
 }
@@ -170,9 +170,64 @@ header {
   font-weight: bold;
 }
 
-/* Page content */
-main {
-  padding: 40px;
-  max-width: 800px;
-  margin: auto;
+/* 3-Column Layout */
+.study-layout {
+  display: grid;
+  grid-template-columns: 200px 1fr 250px; /* left | center | right */
+  gap: 2rem;
+  width: 100%;
+  padding-left: 20px;
+  padding-top: 50px;
+}
+
+/* Left modes column */
+.modes-column {
+  text-align: center;
+}
+
+.modes-column h2 {
+  margin-bottom: 1rem;
+}
+
+.mode-btn {
+  width: 140px;
+  padding: 0.8rem 1rem;
+  margin: 0.7rem 0;
+  background-color: #d6eaff; /* soft blue */
+  border: 1px solid #333;
+  border-radius: 0.4rem;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+.mode-btn:hover {
+  background-color: #bcdcff;
+}
+
+/* Center flashcard column */
+.center-column {
+  text-align: center;
+}
+
+.center-column h2 {
+  margin-bottom: 1rem;
+}
+
+/* Right column — question list */
+.right-column {
+  text-align: left;
+  padding-left: 1rem;
+}
+
+.right-column h2 {
+  margin-bottom: 1rem;
+}
+
+.question-item {
+  margin: 0.4rem 0;
+  cursor: pointer;
+}
+
+.question-item:hover {
+  text-decoration: underline;
 }

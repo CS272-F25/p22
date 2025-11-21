@@ -30,38 +30,76 @@
     </div>
   </header>
 
-    <!-- Flashcard Body -->
-  <main style="padding-top: 4rem; text-align:center;">
+  <main>
 
-    <!-- REAL flashcard UI -->
-    <div id="flashcard" class="flashcard-box">
-      <div id="front"></div>
-      <div id="back" class="hidden"></div>
-    </div>
+  <div class="study-layout">
 
-    <div id="controls">
-      <button id="prevBtn">Prev</button>
-      <button id="flipBtn">Flip</button>
-      <button id="nextBtn">Next</button>
-    </div>
+    <!-- LEFT COLUMN -->
+    <aside class="left-column">
+      <h2>Modes</h2>
+      <button class="mode-btn" onclick="setMode('flashcards')">Flashcards</button>
+      <button class="mode-btn" onclick="setMode('learn')">Learn</button>
+      <button class="mode-btn" onclick="setMode('quiz')">Quiz</button>
+    </aside>
 
-    <!-- REQUIRED FAKE (HIDDEN) ELEMENTS FOR app.js -->
-    <div id="addCardSection" class="hidden">
-      <input id="newFront" class="hidden">
-      <input id="newBack" class="hidden">
-      <button id="addBtn" class="hidden"></button>
-    </div>
+    <!-- CENTER COLUMN (your exact original flashcard UI) -->
+    <section class="center-column">
 
-    <div id="importArea" class="hidden">
-      <button id="importBtn" class="hidden"></button>
-      <input type="file" id="csvFile" class="hidden">
-    </div>
+      <!-- Flashcard Body -->
+      <div style="text-align:center;">
 
-    <div id="exportSection" class="hidden">
-      <button id="exportBtn" class="hidden"></button>
-    </div>
+        <!-- REAL flashcard UI -->
+        <div id="flashcard" class="flashcard-box">
+          <div id="front"></div>
+          <div id="back" class="hidden"></div>
+        </div>
 
-  </main>
+        <div id="controls">
+          <button id="prevBtn">Prev</button>
+          <button id="flipBtn">Flip</button>
+          <button id="nextBtn">Next</button>
+        </div>
+
+        <!-- REQUIRED FAKES FOR app.js -->
+        <div id="addCardSection" class="hidden">
+          <input id="newFront" class="hidden">
+          <input id="newBack" class="hidden">
+          <button id="addBtn" class="hidden"></button>
+        </div>
+
+        <div id="importArea" class="hidden">
+          <button id="importBtn" class="hidden"></button>
+          <input type="file" id="csvFile" class="hidden">
+        </div>
+
+        <div id="exportSection" class="hidden">
+          <button id="exportBtn" class="hidden"></button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- RIGHT COLUMN -->
+    <aside class="right-column">
+      <h2 id="right-title">Questions</h2>
+      <div id="question-list">
+    <div class="question-item" data-index="0">Question 1</div>
+    <div class="question-item" data-index="1">Question 2</div>
+    <div class="question-item" data-index="2">Question 3</div>
+    <div class="question-item" data-index="3">Question 4</div>
+    <div class="question-item" data-index="4">Question 5</div>
+    <div class="question-item" data-index="5">Question 6</div>
+    <div class="question-item" data-index="6">Question 7</div>
+    <div class="question-item" data-index="7">Question 8</div>
+    <div class="question-item" data-index="8">Question 9</div>
+    <div class="question-item" data-index="9">Question 10</div>
+</div>
+
+    </aside>
+
+  </div>
+
+</main>
 
   <script src="../app.js"></script>
   <script src="math.js"></script>
