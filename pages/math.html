@@ -30,12 +30,41 @@
     </div>
   </header>
 
+    <!-- Flashcard Body -->
+  <main style="padding-top: 4rem; text-align:center;">
 
-  <main>
-    <h1>Math</h1>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean sed sapien ac est imperdiet fermentum sed eget enim.</p>
+    <!-- REAL flashcard UI -->
+    <div id="flashcard" class="flashcard-box">
+      <div id="front"></div>
+      <div id="back" class="hidden"></div>
+    </div>
+
+    <div id="controls">
+      <button id="prevBtn">Prev</button>
+      <button id="flipBtn">Flip</button>
+      <button id="nextBtn">Next</button>
+    </div>
+
+    <!-- REQUIRED FAKE (HIDDEN) ELEMENTS FOR app.js -->
+    <div id="addCardSection" class="hidden">
+      <input id="newFront" class="hidden">
+      <input id="newBack" class="hidden">
+      <button id="addBtn" class="hidden"></button>
+    </div>
+
+    <div id="importArea" class="hidden">
+      <button id="importBtn" class="hidden"></button>
+      <input type="file" id="csvFile" class="hidden">
+    </div>
+
+    <div id="exportSection" class="hidden">
+      <button id="exportBtn" class="hidden"></button>
+    </div>
+
   </main>
 
   <script src="../app.js"></script>
+  <script src="math.js"></script>
+
 </body>
 </html>
