@@ -1,5 +1,102 @@
 /* Global site styling for all pages */
 
+/* flashcard styling*/
+.hidden {
+  display: none;
+}
+
+#flashcard {
+    max-width: 30rem;
+    margin: 2rem auto;
+    padding: 2rem;
+    border: 0.1rem solid;
+    border-radius: 0.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 12rem;
+    text-align: center;
+    font-size: 1.4rem;
+}
+
+#front,
+#back {
+    padding: 1rem;
+}
+
+button {
+    cursor: pointer;
+}
+
+#controls {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+#controls button {
+    padding: 0.7rem 1.5rem;
+    border: 0.1rem solid;
+    background: none;
+    border-radius: 0.4rem;
+    font-size: 1.1rem;
+}
+
+#addCardSection {
+    max-width: 30rem;
+    margin: 3rem auto 0 auto;
+    padding: 2rem;
+    border: 0.1rem solid;
+    border-radius: 0.5rem;
+    text-align: center;
+}
+
+#addCardSection input {
+    width: 100%;
+    padding: 0.8rem;
+    border: 0.1rem solid;
+    border-radius: 0.3rem;
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+}
+
+#addCardSection button {
+    padding: 0.7rem 1.4rem;
+    border: 0.1rem solid;
+    background: none;
+    border-radius: 0.4rem;
+    font-size: 1.1rem;
+}
+
+#importArea {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+#importArea button {
+    padding: 0.7rem 1.4rem;
+    border: 0.1rem solid;
+    background: none;
+    border-radius: 0.4rem;
+    font-size: 1.1rem;
+}
+
+#exportSection {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+#exportSection button {
+    padding: 0.7rem 1.4rem;
+    border: 0.1rem solid;
+    background: none;
+    border-radius: 0.4rem;
+    font-size: 1.1rem;
+}
+
+
+
 /* Page layout */
 body {
   background-color: #cfe8ff; /* light blue */
