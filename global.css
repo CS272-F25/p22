@@ -2,237 +2,243 @@
 
 /* flashcard styling*/
 .hidden {
-  display: none;
+	display: none;
 }
 
 #flashcard {
-    max-width: 40rem;
-    margin: 2rem auto;
-    padding: 2rem;
-    border: 0.1rem solid;
-    border-radius: 0.5rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 18rem;
-    text-align: center;
-    font-size: 1.4rem;
+	max-width: 40rem;
+	margin: 2rem auto;
+	padding: 2rem;
+	border: 0.1rem solid;
+	border-radius: 0.5rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 18rem;
+	text-align: center;
+	font-size: 1.4rem;
 }
 
-#front, #back {
-  padding: 1rem;
-  white-space: pre-wrap;
+#front,
+#back {
+	padding: 1rem;
+	white-space: pre-wrap;
 }
 
 
 button {
-    cursor: pointer;
+	cursor: pointer;
 }
 
 #controls {
-    margin-top: 2rem;
-    display: flex;
-    justify-content: center;
-    gap: 1.5rem;
+	margin-top: 2rem;
+	display: flex;
+	justify-content: center;
+	gap: 1.5rem;
 }
 
 #controls button {
-    padding: 0.7rem 1.5rem;
-    border: 0.1rem solid;
-    background: none;
-    border-radius: 0.4rem;
-    font-size: 1.1rem;
+	padding: 0.7rem 1.5rem;
+	border: 0.1rem solid;
+	background: none;
+	border-radius: 0.4rem;
+	font-size: 1.1rem;
 }
 
 #addCardSection {
-    max-width: 30rem;
-    margin: 3rem auto 0 auto;
-    padding: 2rem;
-    border: 0.1rem solid;
-    border-radius: 0.5rem;
-    text-align: center;
+	max-width: 30rem;
+	margin: 3rem auto 0 auto;
+	padding: 2rem;
+	border: 0.1rem solid;
+	border-radius: 0.5rem;
+	text-align: center;
 }
 
 #addCardSection input {
-    width: 100%;
-    padding: 0.8rem;
-    border: 0.1rem solid;
-    border-radius: 0.3rem;
-    margin-bottom: 1rem;
-    font-size: 1.1rem;
+	width: 100%;
+	padding: 0.8rem;
+	border: 0.1rem solid;
+	border-radius: 0.3rem;
+	margin-bottom: 1rem;
+	font-size: 1.1rem;
 }
 
 #addCardSection button {
-    padding: 0.7rem 1.4rem;
-    border: 0.1rem solid;
-    background: none;
-    border-radius: 0.4rem;
-    font-size: 1.1rem;
+	padding: 0.7rem 1.4rem;
+	border: 0.1rem solid;
+	background: none;
+	border-radius: 0.4rem;
+	font-size: 1.1rem;
 }
 
 #importArea {
-    text-align: center;
-    margin-top: 2rem;
+	text-align: center;
+	margin-top: 2rem;
 }
 
 #importArea button {
-    padding: 0.7rem 1.4rem;
-    border: 0.1rem solid;
-    background: none;
-    border-radius: 0.4rem;
-    font-size: 1.1rem;
+	padding: 0.7rem 1.4rem;
+	border: 0.1rem solid;
+	background: none;
+	border-radius: 0.4rem;
+	font-size: 1.1rem;
 }
 
 #exportSection {
-    text-align: center;
-    margin-top: 2rem;
+	text-align: center;
+	margin-top: 2rem;
 }
 
 #exportSection button {
-    padding: 0.7rem 1.4rem;
-    border: 0.1rem solid;
-    background: none;
-    border-radius: 0.4rem;
-    font-size: 1.1rem;
+	padding: 0.7rem 1.4rem;
+	border: 0.1rem solid;
+	background: none;
+	border-radius: 0.4rem;
+	font-size: 1.1rem;
 }
 
 
 
 /* Page layout */
 body {
-  background-color: #cfe8ff; /* light blue */
-  color: #333333; /* dark grey */
-  font-family: "Segoe UI", Roboto, Arial, sans-serif;
-  margin: 0;
-  padding: 0;
+	background-color: #cfe8ff;
+	/* light blue */
+	color: #333333;
+	/* dark grey */
+	font-family: "Segoe UI", Roboto, Arial, sans-serif;
+	margin: 0;
+	padding: 0;
 }
 
 /* HEADER LAYOUT -------------------------------------------------- */
 header {
-  background-color: #cfe8ff;
-  padding: 15px 25px;
-  border-bottom: 2px solid #b0d4ff;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+	background-color: #cfe8ff;
+	padding: 15px 25px;
+	border-bottom: 2px solid #b0d4ff;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 }
 
 /* LEFT SECTION */
 .left-header {
-  display: flex;
-  align-items: center;
-  gap: 10px;
+	display: flex;
+	align-items: center;
+	gap: 10px;
 }
 
 .logo-img {
-  height: 50px;
-  width: auto;
-  object-fit: contain;
+	height: 50px;
+	width: auto;
+	object-fit: contain;
 }
 
 .logo {
-  font-size: 1.4rem;
-  font-weight: bold;
-  color: #333;
-  text-decoration: none;
+	font-size: 1.4rem;
+	font-weight: bold;
+	color: #333;
+	text-decoration: none;
 }
 
 /* CENTER NAV */
 .center-nav a {
-  margin: 0 15px;
-  text-decoration: none;
-  font-weight: 500;
-  color: #333;
+	margin: 0 15px;
+	text-decoration: none;
+	font-weight: 500;
+	color: #333;
 }
 
 .center-nav a:hover {
-  text-decoration: underline;
+	text-decoration: underline;
 }
 
 /* RIGHT NAV */
 .right-nav {
-  display: flex;
-  align-items: center;
-  gap: 10px;
+	display: flex;
+	align-items: center;
+	gap: 10px;
 }
 
 .right-nav a {
-  text-decoration: none;
-  font-weight: 500;
-  color: #333;
+	text-decoration: none;
+	font-weight: 500;
+	color: #333;
 }
 
 .right-nav a:hover {
-  text-decoration: underline;
+	text-decoration: underline;
 }
 
 .divider {
-  color: #555;
-  font-weight: bold;
+	color: #555;
+	font-weight: bold;
 }
 
 /* Page content */
 main {
-  padding-top: 40px;
-  padding-left: 40px;
+	padding-top: 40px;
+	padding-left: 40px;
 }
 
 /* 3-Column Layout */
 .study-layout {
-  display: grid;
-  grid-template-columns: 200px 1fr 250px;
-  gap: 2rem;
-  width: 100%;
+	display: grid;
+	grid-template-columns: 200px 1fr 250px;
+	gap: 2rem;
+	width: 100%;
 }
 
 /* Left modes column */
 .modes-column {
-  text-align: center;
+	text-align: center;
 }
 
 .modes-column h2 {
-  margin-bottom: 1rem;
+	margin-bottom: 1rem;
 }
 
-.mode-btn, .difficulty-btn {
-  width: 140px;
-  padding: 0.8rem 1rem;
-  margin: 0.7rem 0;
-  background-color: #d6eaff; /* soft blue */
-  border: 1px solid #333;
-  border-radius: 0.4rem;
-  font-size: 1.1rem;
-  cursor: pointer;
+.mode-btn,
+.difficulty-btn {
+	width: 140px;
+	padding: 0.8rem 1rem;
+	margin: 0.7rem 0;
+	background-color: #d6eaff;
+	/* soft blue */
+	border: 1px solid #333;
+	border-radius: 0.4rem;
+	font-size: 1.1rem;
+	cursor: pointer;
 }
 
-.mode-btn:hover, .difficulty-btn:hover {
-  background-color: #bcdcff;
+.mode-btn:hover,
+.difficulty-btn:hover {
+	background-color: #bcdcff;
 }
 
 /* Center flashcard column */
 .center-column {
-  text-align: center;
+	text-align: center;
 }
 
 .center-column h2 {
-  margin-bottom: 1rem;
+	margin-bottom: 1rem;
 }
 
 /* Right column — question list */
 .right-column {
-  text-align: left;
-  padding-left: 1rem;
+	text-align: left;
+	padding-left: 1rem;
 }
 
 .right-column h2 {
-  margin-bottom: 1rem;
+	margin-bottom: 1rem;
 }
 
 .question-item {
-  margin: 0.4rem 0;
-  cursor: pointer;
+	margin: 0.4rem 0;
+	cursor: pointer;
 }
 
 .question-item:hover {
-  text-decoration: underline;
+	text-decoration: underline;
 }

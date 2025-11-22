@@ -13,57 +13,57 @@ let apiURL = buildURL(currentCategory, currentDifficulty);
 
 // Decode HTML entities (OpenTDB uses &amp;, &#039;, etc.)
 function decodeHTML(str) {
-  const txt = document.createElement("textarea");
-  txt.innerHTML = str;
-  return txt.value;
+	const txt = document.createElement("textarea");
+	txt.innerHTML = str;
+	return txt.value;
 }
 
 async function loadAPIFlashcards() {
-  try {
-    const response = await fetch(apiURL);
-    const data = await response.json();
+	try {
+		const response = await fetch(apiURL);
+		const data = await response.json();
 
-    // Convert API results into flashcards that match app.js format
-    flashcards = data.results.map(q => {
-    const options = [...q.incorrect_answers, q.correct_answer];
+		// Convert API results into flashcards that match app.js format
+		flashcards = data.results.map(q => {
+			const options = [...q.incorrect_answers, q.correct_answer];
 
-    // Shuffle options
-    for (let i = options.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [options[i], options[j]] = [options[j], options[i]];
-    }
+			// Shuffle options
+			for (let i = options.length - 1; i > 0; i--) {
+				const j = Math.floor(Math.random() * (i + 1));
+				[options[i], options[j]] = [options[j], options[i]];
+			}
 
-    // Build front text with line breaks
-    const question = decodeHTML(q.question);
-    const formattedOptions = options
-        .map((opt, i) => `${i + 1}. ${decodeHTML(opt)}`)
-        .join("\n");
+			// Build front text with line breaks
+			const question = decodeHTML(q.question);
+			const formattedOptions = options
+				.map((opt, i) => `${i + 1}. ${decodeHTML(opt)}`)
+				.join("\n");
 
-    const frontText = `${question}\n\n${formattedOptions}`;
+			const frontText = `${question}\n\n${formattedOptions}`;
 
-    return {
-        front: frontText,
-        back: (options.indexOf(decodeHTML(q.correct_answer))+1) + ". " + decodeHTML(q.correct_answer)
-    };
-});
+			return {
+				front: frontText,
+				back: (options.indexOf(decodeHTML(q.correct_answer)) + 1) + ". " + decodeHTML(q.correct_answer)
+			};
+		});
 
 
-    // Start at the first card
-    currentIndex = 0;
+		// Start at the first card
+		currentIndex = 0;
 
-    // Unhide flashcard + controls
-    flashcardDiv.classList.remove("hidden");
-    controls.classList.remove("hidden");
+		// Unhide flashcard + controls
+		flashcardDiv.classList.remove("hidden");
+		controls.classList.remove("hidden");
 
-    // Render first card using app.js function
-    displayCard();
+		// Render first card using app.js function
+		displayCard();
 
-    // enable "jump to question" clicking
-    setupQuestionJumping();
+		// enable "jump to question" clicking
+		setupQuestionJumping();
 
-  } catch (err) {
-    frontDiv.textContent = "Error loading questions.";
-  }
+	} catch (err) {
+		frontDiv.textContent = "Error loading questions.";
+	}
 }
 
 // Hide all the add/import/export sections (unused in math mode)
@@ -78,46 +78,46 @@ flashcards = [];   // clear any old local saved data
 loadAPIFlashcards();
 
 function setMode(mode) {
-  const rightTitle = document.getElementById("right-title");
+	const rightTitle = document.getElementById("right-title");
 
-  if (mode === "flashcards") rightTitle.textContent = "Cards";
-  else if (mode === "learn") rightTitle.textContent = "Notes";
-  else if (mode === "quiz") rightTitle.textContent = "Questions";
+	if (mode === "flashcards") rightTitle.textContent = "Cards";
+	else if (mode === "learn") rightTitle.textContent = "Notes";
+	else if (mode === "quiz") rightTitle.textContent = "Questions";
 }
 
 // Jump to a specific flashcard when clicking “Question X”
 function setupQuestionJumping() {
-    const items = document.querySelectorAll(".question-item");
+	const items = document.querySelectorAll(".question-item");
 
-    items.forEach(item => {
-        item.addEventListener("click", () => {
-            const index = parseInt(item.dataset.index);
+	items.forEach(item => {
+		item.addEventListener("click", () => {
+			const index = parseInt(item.dataset.index);
 
-            // update global flashcard index
-            currentIndex = index;
+			// update global flashcard index
+			currentIndex = index;
 
-            // show that card
-            displayCard();
-        });
-    });
+			// show that card
+			displayCard();
+		});
+	});
 }
 
 function setDifficulty(level) {
-  if (level === "easy") currentDifficulty = DIFFICULTY.EASY;
-  else if (level === "medium") currentDifficulty = DIFFICULTY.MEDIUM;
-  else if (level === "hard") currentDifficulty = DIFFICULTY.HARD;
+	if (level === "easy") currentDifficulty = DIFFICULTY.EASY;
+	else if (level === "medium") currentDifficulty = DIFFICULTY.MEDIUM;
+	else if (level === "hard") currentDifficulty = DIFFICULTY.HARD;
 
-  // Update UI highlight
-  document.querySelectorAll(".difficulty-btn").forEach(btn => {
-    btn.classList.remove("active-difficulty");
-  });
-  document.getElementById(`diff-${level}`).classList.add("active-difficulty");
+	// Update UI highlight
+	document.querySelectorAll(".difficulty-btn").forEach(btn => {
+		btn.classList.remove("active-difficulty");
+	});
+	document.getElementById(`diff-${level}`).classList.add("active-difficulty");
 
-  // rebuild the API URL with the new difficulty
-  apiURL = buildURL(currentCategory, currentDifficulty);
+	// rebuild the API URL with the new difficulty
+	apiURL = buildURL(currentCategory, currentDifficulty);
 
-  // reload questions
-  loadAPIFlashcards();
+	// reload questions
+	loadAPIFlashcards();
 }
 
 window.setMode = setMode;
