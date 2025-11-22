@@ -8,6 +8,7 @@ const currentCategory = CATEGORY.MATH;
 
 // Build the API URL using your difficulty & category
 let apiURL = buildURL(currentCategory, currentDifficulty);
+// let apiURL = 'https://opentdb.com/api.php?amount=10&category=19&difficulty=easy';
 
 
 // Decode HTML entities (OpenTDB uses &amp;, &#039;, etc.)
@@ -118,3 +119,7 @@ function setDifficulty(level) {
   // reload questions
   loadAPIFlashcards();
 }
+
+window.setMode = setMode;
+window.setDifficulty = setDifficulty;
+window.setupQuestionJumping = setupQuestionJumping;
