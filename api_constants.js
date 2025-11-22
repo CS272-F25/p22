@@ -4,7 +4,7 @@ export const OTDB_BASE = "https://opentdb.com/api.php";
 // Category ID map (easy to reference everywhere)
 export const CATEGORY = {
 	MATH: 19,
-	SCIENCE_NATURE: 17,
+	SCIENCE: 17,
 	GEOGRAPHY: 22,
 	HISTORY: 23,
 	ART: 25

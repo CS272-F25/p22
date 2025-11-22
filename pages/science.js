@@ -4,7 +4,7 @@ import { CATEGORY, DIFFICULTY, buildURL } from "../api_constants.js";
 let currentDifficulty = DIFFICULTY.EASY;   // instead of "easy"
 
 // Set this page’s category (Math)
-const currentCategory = CATEGORY.MATH;
+const currentCategory = CATEGORY.SCIENCE;
 
 // Build the API URL using your difficulty & category
 let apiURL = buildURL(currentCategory, currentDifficulty);

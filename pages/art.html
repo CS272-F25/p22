@@ -1,40 +1,117 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Art - Smart Sausage</title>
-  <link rel="stylesheet" href="../global.css">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Art - Smart Sausage</title>
+	<link rel="stylesheet" href="../global.css">
 </head>
+
 <body>
 
-  <header>
-    <div class="left-header">
-        <img src="../images/logo.png" class="logo-img" alt="Smart Sausage Logo">
-        <a class="logo" href="../index.html">Smart Sausage</a>
-    </div>
+	<header>
+		<div class="left-header">
+			<img src="../images/logo.png" class="logo-img" alt="Smart Sausage Logo">
+			<a class="logo" href="../index.html">Smart Sausage</a>
+		</div>
 
-    <nav class="center-nav">
-        <a href="math.html">Math</a>
-        <a href="science.html">Science</a>
-        <a href="geography.html">Geography</a>
-        <a href="history.html">History</a>
-        <a href="art.html">Art</a>
-        <a href="flashcard.html">Flashcards</a>
-    </nav>
+		<nav class="center-nav">
+			<a href="math.html">Math</a>
+			<a href="science.html">Science</a>
+			<a href="geography.html">Geography</a>
+			<a href="history.html">History</a>
+			<a href="art.html">Art</a>
+			<a href="flashcard.html">Flashcards</a>
+		</nav>
 
-    <div class="right-nav">
-        <a href="leaderboard.html">Leaderboard</a>
-        <span class="divider">|</span>
-        <a href="login.html">Login / Sign-Up</a>
-    </div>
-  </header>
+		<div class="right-nav">
+			<a href="leaderboard.html">Leaderboard</a>
+			<span class="divider">|</span>
+			<a href="login.html">Login / Sign-Up</a>
+		</div>
+	</header>
 
-  <main>
-    <h1>Art</h1>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla id tincidunt leo, ut dictum arcu.</p>
-  </main>
+	<main>
 
-  <script src="../app.js"></script>
+		<div class="study-layout">
+
+			<!-- LEFT COLUMN -->
+			<aside class="left-column">
+				<h2>Modes</h2>
+				<button class="mode-btn" onclick="setMode('flashcards')">Flashcards</button>
+				<button class="mode-btn" onclick="setMode('learn')">Learn</button>
+				<button class="mode-btn" onclick="setMode('quiz')">Quiz</button>
+
+				<h2>Difficulty</h2>
+				<button id="diff-easy" class="difficulty-btn" onclick="setDifficulty('easy')">Easy</button>
+				<button id="diff-medium" class="difficulty-btn" onclick="setDifficulty('medium')">Medium</button>
+				<button id="diff-hard" class="difficulty-btn" onclick="setDifficulty('hard')">Hard</button>
+
+			</aside>
+
+			<!-- CENTER COLUMN (your exact original flashcard UI) -->
+			<section class="center-column">
+
+				<!-- Flashcard Body -->
+				<div style="text-align:center;">
+
+					<!-- REAL flashcard UI -->
+					<div id="flashcard" class="flashcard-box">
+						<div id="front"></div>
+						<div id="back" class="hidden"></div>
+					</div>
+
+					<div id="controls">
+						<button id="prevBtn">Prev</button>
+						<button id="flipBtn">Flip</button>
+						<button id="nextBtn">Next</button>
+					</div>
+
+					<!-- REQUIRED FAKES FOR app.js -->
+					<div id="addCardSection" class="hidden">
+						<input id="newFront" class="hidden">
+						<input id="newBack" class="hidden">
+						<button id="addBtn" class="hidden"></button>
+					</div>
+
+					<div id="importArea" class="hidden">
+						<button id="importBtn" class="hidden"></button>
+						<input type="file" id="csvFile" class="hidden">
+					</div>
+
+					<div id="exportSection" class="hidden">
+						<button id="exportBtn" class="hidden"></button>
+					</div>
+
+				</div>
+			</section>
+
+			<!-- RIGHT COLUMN -->
+			<aside class="right-column">
+				<h2 id="right-title">Questions</h2>
+				<div id="question-list">
+					<div class="question-item" data-index="0">Question 1</div>
+					<div class="question-item" data-index="1">Question 2</div>
+					<div class="question-item" data-index="2">Question 3</div>
+					<div class="question-item" data-index="3">Question 4</div>
+					<div class="question-item" data-index="4">Question 5</div>
+					<div class="question-item" data-index="5">Question 6</div>
+					<div class="question-item" data-index="6">Question 7</div>
+					<div class="question-item" data-index="7">Question 8</div>
+					<div class="question-item" data-index="8">Question 9</div>
+					<div class="question-item" data-index="9">Question 10</div>
+				</div>
+
+			</aside>
+
+		</div>
+
+	</main>
+
+	<script src="../app.js"></script>
+	<script type="module" src="art.js"></script>
+
 </body>
+
 </html>
