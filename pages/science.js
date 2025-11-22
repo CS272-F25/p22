@@ -1,14 +1,5 @@
-import { CATEGORY, DIFFICULTY, buildURL } from "../api_constants.js";
-
-// GLOBAL DIFFICULTY SETTING
-let currentDifficulty = DIFFICULTY.EASY;   // instead of "easy"
-
-// Set this page’s category (Math)
-const currentCategory = CATEGORY.MATH;
-
-// Build the API URL using your difficulty & category
-let apiURL = buildURL(currentCategory, currentDifficulty);
-
+// URL for Math (Science: Mathematics)
+const apiURL = "https://opentdb.com/api.php?amount=10&category=17";
 
 // Decode HTML entities (OpenTDB uses &amp;, &#039;, etc.)
 function decodeHTML(str) {
@@ -101,20 +92,3 @@ function setupQuestionJumping() {
     });
 }
 
-function setDifficulty(level) {
-  if (level === "easy") currentDifficulty = DIFFICULTY.EASY;
-  else if (level === "medium") currentDifficulty = DIFFICULTY.MEDIUM;
-  else if (level === "hard") currentDifficulty = DIFFICULTY.HARD;
-
-  // Update UI highlight
-  document.querySelectorAll(".difficulty-btn").forEach(btn => {
-    btn.classList.remove("active-difficulty");
-  });
-  document.getElementById(`diff-${level}`).classList.add("active-difficulty");
-
-  // rebuild the API URL with the new difficulty
-  apiURL = buildURL(currentCategory, currentDifficulty);
-
-  // reload questions
-  loadAPIFlashcards();
-}

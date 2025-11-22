@@ -40,6 +40,12 @@
       <button class="mode-btn" onclick="setMode('flashcards')">Flashcards</button>
       <button class="mode-btn" onclick="setMode('learn')">Learn</button>
       <button class="mode-btn" onclick="setMode('quiz')">Quiz</button>
+
+      <h2>Difficulty</h2>
+      <button id="diff-easy"   class="difficulty-btn" onclick="setDifficulty('easy')">Easy</button>
+      <button id="diff-medium" class="difficulty-btn" onclick="setDifficulty('medium')">Medium</button>
+      <button id="diff-hard"   class="difficulty-btn" onclick="setDifficulty('hard')">Hard</button>
+
     </aside>
 
     <!-- CENTER COLUMN (your exact original flashcard UI) -->
@@ -102,7 +108,7 @@
 </main>
 
   <script src="../app.js"></script>
-  <script src="math.js"></script>
+  <script type="module" src="math.js"></script>
 
 </body>
 </html>
