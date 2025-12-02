@@ -242,3 +242,40 @@ main {
 .question-item:hover {
 	text-decoration: underline;
 }
+
+
+
+.chase-container {
+  position: relative;
+  width: 100%;
+  height: 10rem; /* height of the lane */
+  overflow: hidden;
+}
+
+.ball,
+.dog {
+  position: absolute;
+  bottom: 0;
+  height: 2rem; 
+}
+
+.ball {
+  animation: roll 8s linear infinite;
+  margin-bottom: 1rem;
+}
+
+.dog {
+  animation: chase 8s linear infinite;
+  height: 4rem;
+  animation-delay: 2s; /* dog starts later */
+}
+
+@keyframes roll {
+  0% { transform: translateX(-10rem); }
+  100% { transform: translateX(120vw); }
+}
+
+@keyframes chase {
+  0% { transform: translateX(-12rem); }
+  100% { transform: translateX(120vw); }
+}
