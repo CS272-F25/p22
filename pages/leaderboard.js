@@ -32,11 +32,11 @@ function computeFavoriteSubject() {
 }
 
 const subjectIcons = {
-    Math: "../images/subjects/math1.png",
-    Science: "../images/subjects/science1.png",
-    Geography: "../images/subjects/geo1.png",
-    History: "../images/subjects/history1.png",
-    Art: "../images/subjects/art1.png"
+    Math: "../images/math1.png",
+    Science: "../images/science1.png",
+    Geography: "../images/geo1.png",
+    History: "../images/history1.png",
+    Art: "../images/art1.png"
 };
 
 const fav = computeFavoriteSubject();
