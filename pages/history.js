@@ -240,16 +240,26 @@ function refreshQuizControls() {
 }
 
 function checkIfQuizComplete() {
-    // Quiz is complete when EVERY question has a non-null status
     const done = Object.values(questionResults).every(q => q.status !== null);
 
-    if (done) {
-        stopQuizTimer();
-        console.log("Quiz complete!");
+    if (!done) return;
 
-        // OPTIONAL: disable all navigation + ABCD + submit once quiz is done
-        refreshQuizControls();
-    }
+    stopQuizTimer();
+
+    // Count correct answers
+    const score = Object.values(questionResults).filter(q => q.status === "correct").length;
+
+    // Convert quizSeconds → MM:SS
+    const mins = String(Math.floor(quizSeconds / 60)).padStart(2, '0');
+    const secs = String(quizSeconds % 60).padStart(2, '0');
+    const timeFormatted = `${mins}:${secs}`;
+
+    // Save to localStorage
+    saveQuizResultsToLocalStorage("History", currentDifficulty, score, timeFormatted);
+
+    console.log("Quiz Complete → Saved:", score, timeFormatted);
+
+    refreshQuizControls();
 }
 
 function setDifficulty(level) {
@@ -407,3 +417,20 @@ document.getElementById("prevBtn").addEventListener("click", () => {
 window.setMode = setMode;
 window.setDifficulty = setDifficulty;
 window.setupQuestionJumping = setupQuestionJumping;
+
+function saveQuizResultsToLocalStorage(subject, difficulty, score, time) {
+    const record = {
+        subject,
+        difficulty,
+        score,
+        time,
+        date: new Date().toLocaleDateString()
+    };
+
+    // Load existing
+    let stats = JSON.parse(localStorage.getItem("smartSausageStats")) || [];
+
+    stats.push(record);
+
+    localStorage.setItem("smartSausageStats", JSON.stringify(stats));
+}
