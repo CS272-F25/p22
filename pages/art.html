@@ -56,8 +56,6 @@
 				<!-- Flashcard Body -->
 				<div style="text-align:center;">
 
-					<button id="flag-btn" class="hidden flag-btn">🚩 Flag</button>
-
 					<!-- REAL flashcard UI -->
 					<div id="flashcard" class="flashcard-box">
 						<div id="front"></div>
@@ -67,7 +65,17 @@
 					<div id="controls">
 						<button id="prevBtn">Prev</button>
 						<button id="flipBtn">Flip</button>
+						<button id="save-btn" class="hidden">Save</button>
+						<button id="flag-btn" class="hidden">Flag</button>
+						<button id="submitBtn" class="hidden">Submit</button>
 						<button id="nextBtn">Next</button>
+					</div>
+
+					<div id="quiz-options" class="hidden">
+						<button class="quiz-opt" data-index="0">A</button>
+						<button class="quiz-opt" data-index="1">B</button>
+						<button class="quiz-opt" data-index="2">C</button>
+						<button class="quiz-opt" data-index="3">D</button>
 					</div>
 
 					<!-- REQUIRED FAKES FOR app.js -->
@@ -104,6 +112,8 @@
 					<div class="question-item" data-index="8">Question 9</div>
 					<div class="question-item" data-index="9">Question 10</div>
 				</div>
+
+				<div id="quiz-timer" class="hidden timer-box">Time: 00:00</div>
 
 			</aside>
 
