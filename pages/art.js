@@ -3,7 +3,7 @@ import { CATEGORY, DIFFICULTY, buildURL } from "../api_constants.js";
 // GLOBAL DIFFICULTY SETTING
 let currentDifficulty = DIFFICULTY.EASY;   // instead of "easy"
 
-// Set this page’s category (Math)
+// Set this page’s category (Art)
 const currentCategory = CATEGORY.ART;
 
 // Build the API URL using your difficulty & category
