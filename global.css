@@ -1,281 +1,378 @@
-/* Global site styling for all pages */
+/* ----------------------------------------------------------
+   GLOBAL + FLASHCARD UI
+---------------------------------------------------------- */
 
-/* flashcard styling*/
 .hidden {
-	display: none;
+    display: none;
 }
 
+body {
+    background-color: #cfe8ff;
+    color: #333333;
+    font-family: "Segoe UI", Roboto, Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+
+    /* Prevent content from being hidden behind fixed dog footer */
+    padding-bottom: 140px; 
+}
+
+/* Flashcard box */
 #flashcard {
-	max-width: 40rem;
-	margin: 2rem auto;
-	padding: 2rem;
-	border: 0.1rem solid;
-	border-radius: 0.5rem;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	min-height: 18rem;
-	text-align: center;
-	font-size: 1.4rem;
+    max-width: 40rem;
+    margin: 2rem auto;
+    padding: 2rem;
+    border: 0.1rem solid #333;
+    border-radius: 0.5rem;
+    min-height: 18rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.4rem;
+    text-align: center;
 }
 
-#front,
-#back {
-	padding: 1rem;
-	white-space: pre-wrap;
+#front, #back {
+    padding: 1rem;
+    white-space: pre-wrap;
 }
-
 
 button {
-	cursor: pointer;
+    cursor: pointer;
+    border: 1px solid #333;
+    background: white;
+    border-radius: 0.4rem;
+    font-size: 1.05rem;
+    padding: 0.55rem 1.2rem;
 }
 
-#controls {
-	margin-top: 2rem;
-	display: flex;
-	justify-content: center;
-	gap: 1.5rem;
+button:hover {
+    background-color: #bcdcff;
 }
 
-#controls button {
-	padding: 0.7rem 1.5rem;
-	border: 0.1rem solid;
-	background: none;
-	border-radius: 0.4rem;
-	font-size: 1.1rem;
-}
+/* ----------------------------------------------------------
+   HEADER
+---------------------------------------------------------- */
 
-#addCardSection {
-	max-width: 30rem;
-	margin: 3rem auto 0 auto;
-	padding: 2rem;
-	border: 0.1rem solid;
-	border-radius: 0.5rem;
-	text-align: center;
-}
-
-#addCardSection input {
-	width: 100%;
-	padding: 0.8rem;
-	border: 0.1rem solid;
-	border-radius: 0.3rem;
-	margin-bottom: 1rem;
-	font-size: 1.1rem;
-}
-
-#addCardSection button {
-	padding: 0.7rem 1.4rem;
-	border: 0.1rem solid;
-	background: none;
-	border-radius: 0.4rem;
-	font-size: 1.1rem;
-}
-
-#importArea {
-	text-align: center;
-	margin-top: 2rem;
-}
-
-#importArea button {
-	padding: 0.7rem 1.4rem;
-	border: 0.1rem solid;
-	background: none;
-	border-radius: 0.4rem;
-	font-size: 1.1rem;
-}
-
-#exportSection {
-	text-align: center;
-	margin-top: 2rem;
-}
-
-#exportSection button {
-	padding: 0.7rem 1.4rem;
-	border: 0.1rem solid;
-	background: none;
-	border-radius: 0.4rem;
-	font-size: 1.1rem;
-}
-
-
-
-/* Page layout */
-body {
-	background-color: #cfe8ff;
-	/* light blue */
-	color: #333333;
-	/* dark grey */
-	font-family: "Segoe UI", Roboto, Arial, sans-serif;
-	margin: 0;
-	padding: 0;
-}
-
-/* HEADER LAYOUT -------------------------------------------------- */
 header {
-	background-color: #cfe8ff;
-	padding: 15px 25px;
-	border-bottom: 2px solid #b0d4ff;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
+    background-color: #cfe8ff;
+    padding: 15px 25px;
+    border-bottom: 2px solid #b0d4ff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-/* LEFT SECTION */
 .left-header {
-	display: flex;
-	align-items: center;
-	gap: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 .logo-img {
-	height: 50px;
-	width: auto;
-	object-fit: contain;
+    height: 50px;
 }
 
 .logo {
-	font-size: 1.4rem;
-	font-weight: bold;
-	color: #333;
-	text-decoration: none;
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #333;
+    text-decoration: none;
 }
 
-/* CENTER NAV */
-.center-nav a {
-	margin: 0 15px;
-	text-decoration: none;
-	font-weight: 500;
-	color: #333;
-}
-
-.center-nav a:hover {
-	text-decoration: underline;
-}
-
-/* RIGHT NAV */
-.right-nav {
-	display: flex;
-	align-items: center;
-	gap: 10px;
-}
-
+.center-nav a,
 .right-nav a {
-	text-decoration: none;
-	font-weight: 500;
-	color: #333;
+    text-decoration: none;
+    font-weight: 500;
+    color: #333;
+    margin: 0 15px;
 }
 
+.center-nav a:hover,
 .right-nav a:hover {
-	text-decoration: underline;
+    text-decoration: underline;
 }
 
 .divider {
-	color: #555;
-	font-weight: bold;
+    color: #555;
+    font-weight: bold;
 }
 
-/* Page content */
+/* ----------------------------------------------------------
+   PAGE LAYOUT
+---------------------------------------------------------- */
+
 main {
-	padding-top: 40px;
-	padding-left: 40px;
+    padding-top: 20px;
+    padding-left: 50px;
+	padding-right: 50px;
 }
 
-/* 3-Column Layout */
 .study-layout {
-	display: grid;
-	grid-template-columns: 200px 1fr 250px;
-	gap: 2rem;
-	width: 100%;
+    display: grid;
+    grid-template-columns: 200px 1fr 250px;
+    gap: 2rem;
 }
 
-/* Left modes column */
-.modes-column {
-	text-align: center;
-}
-
-.modes-column h2 {
-	margin-bottom: 1rem;
-}
-
+/* LEFT COLUMN */
 .mode-btn,
 .difficulty-btn {
-	width: 140px;
-	padding: 0.8rem 1rem;
-	margin: 0.7rem 0;
-	background-color: #d6eaff;
-	/* soft blue */
-	border: 1px solid #333;
-	border-radius: 0.4rem;
-	font-size: 1.1rem;
-	cursor: pointer;
+    width: 140px;
+    padding: 0.8rem 1rem;
+    margin: 0.7rem 0;
+    background-color: #d6eaff;
+    border: 1px solid #333;
+    border-radius: 0.4rem;
+    font-size: 1.1rem;
 }
 
 .mode-btn:hover,
 .difficulty-btn:hover {
-	background-color: #bcdcff;
+    background-color: #bcdcff;
 }
 
-/* Center flashcard column */
-.center-column {
-	text-align: center;
-}
-
-.center-column h2 {
-	margin-bottom: 1rem;
-}
-
-/* Right column — question list */
-.right-column {
-	text-align: left;
-	padding-left: 1rem;
-}
-
-.right-column h2 {
-	margin-bottom: 1rem;
-}
-
+/* RIGHT COLUMN QUESTION LIST */
 .question-item {
-	margin: 0.4rem 0;
-	cursor: pointer;
+    margin: 0.4rem 0;
+    cursor: pointer;
 }
 
 .question-item:hover {
-	text-decoration: underline;
+    text-decoration: underline;
 }
 
+/* ----------------------------------------------------------
+   QUIZ + LEARN FEATURES
+---------------------------------------------------------- */
 
-
-.chase-container {
-  position: relative;
-  width: 100%;
-  height: 10rem; /* height of the lane */
-  overflow: hidden;
+.flag-container {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 1rem;
+    margin-bottom: 10px;
 }
 
-.ball,
-.dog {
-  position: absolute;
-  bottom: 0;
-  height: 2rem; 
+.flag-btn {
+    padding: 6px 12px;
+    border: 1px solid #333;
+    border-radius: 6px;
+    background: white;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.flag-btn:hover {
+    background-color: #bcdcff;
+}
+
+.flagged {
+    color: red;
+    font-weight: bold;
+}
+
+.timer-box {
+    margin-top: 100px;
+    padding: 0.6rem 1rem;
+    border: 1px solid #333;
+    border-radius: 0.4rem;
+    font-size: 1.05rem;
+    background: white;
+    width: fit-content;
+}
+
+.quiz-opt {
+    display: inline-block;
+    margin: 10px 5px 0 5px;
+    padding: 0.45rem 0.75rem;
+    border: 1px solid #333;
+    border-radius: 0.4rem;
+    background: white;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.quiz-opt:hover {
+    background: #dcecff;
+}
+
+.quiz-opt.selected {
+    background: #cfe9ff;
+    border-color: #0066cc;
+    font-weight: bold;
+}
+
+.disabled-submit,
+.disabled-submit:hover {
+    background: #dddddd !important;
+    color: #666 !important;
+    border-color: #999 !important;
+    cursor: not-allowed !important;
+}
+
+/* QUIZ RESULTS */
+.correct {
+    color: green;
+    font-weight: bold;
+}
+
+.incorrect {
+    color: red;
+    font-weight: bold;
+}
+
+/* -------------------------------------------------------
+   NEW FIXED FOOTER: DOG CHASING BALL
+-------------------------------------------------------- */
+
+.chase-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    background: #cfe8ff;
+    border-top: 2px solid #b0d4ff;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    overflow: hidden;
+    z-index: 1000;
+}
+
+.chase-lane {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.ball, .dog {
+    position: absolute;
+    bottom: 10px;
+    object-fit: contain;
 }
 
 .ball {
-  animation: roll 8s linear infinite;
-  margin-bottom: 1rem;
+    height: 2.8rem;
+    animation: roll 8s linear infinite;
 }
 
 .dog {
-  animation: chase 8s linear infinite;
-  height: 4rem;
-  animation-delay: 2s; /* dog starts later */
+    height: 4rem;
+    animation: chase 8s linear infinite;
+    animation-delay: 1s;
 }
 
 @keyframes roll {
-  0% { transform: translateX(-10rem); }
-  100% { transform: translateX(120vw); }
+    0% { transform: translateX(-150px); }
+    100% { transform: translateX(120vw); }
 }
 
 @keyframes chase {
-  0% { transform: translateX(-12rem); }
-  100% { transform: translateX(120vw); }
+    0% { transform: translateX(-200px); }
+    100% { transform: translateX(120vw); }
+}
+
+/* -------------------------------------------------------
+   SUBJECT GRID (Homepage)
+-------------------------------------------------------- */
+
+.subject-section {
+  margin-top: 4rem;
+  padding-bottom: 4rem;
+}
+
+.subject-title {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+
+.subject-grid {
+  display: grid;
+  gap: 2rem;
+  width: 90%;
+  margin: auto;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+@media (max-width: 1000px) {
+  .subject-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .subject-grid {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+.subject-card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-align: center;
+  text-decoration: none;
+  color: #333;
+  border: 1px solid #dedede;
+
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.subject-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+.subject-img-container {
+  width: 100px;
+  height: 100px;
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+.subject-img {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  object-fit: contain;
+  transition: opacity 0.3s ease;
+}
+
+.default-img { opacity: 1; }
+.hover-img { opacity: 0; }
+
+.subject-card:hover .default-img { opacity: 0; }
+.subject-card:hover .hover-img { opacity: 1; }
+
+.subject-card h3 {
+  font-size: 1.4rem;
+  margin: 0.5rem 0;
+  font-weight: bold;
+}
+
+.fun-fact {
+  font-size: 0.95rem;
+  color: #444;
+}
+
+.placeholder {
+  background: #e9f2ff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.placeholder-inner {
+  font-size: 1.1rem;
+  color: #555;
+  opacity: 0.8;
 }

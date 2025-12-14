@@ -8,33 +8,47 @@
 </head>
 <body>
 
-  <header>
-    <div class="left-header">
-        <img src="../images/logo.png" class="logo-img" alt="Smart Sausage Logo">
-        <a class="logo" href="../index.html">Smart Sausage</a>
-    </div>
+<header>
+  <div class="left-header">
+      <img src="../images/logo.png" class="logo-img">
+      <a class="logo" href="../index.html">Smart Sausage</a>
+  </div>
 
-    <nav class="center-nav">
-        <a href="math.html">Math</a>
-        <a href="science.html">Science</a>
-        <a href="geography.html">Geography</a>
-        <a href="history.html">History</a>
-        <a href="art.html">Art</a>
-        <a href="flashcard.html">Flashcards</a>
-    </nav>
+  <nav class="center-nav">
+      <a href="math.html">Math</a>
+      <a href="science.html">Science</a>
+      <a href="geography.html">Geography</a>
+      <a href="history.html">History</a>
+      <a href="art.html">Art</a>
+  </nav>
 
-    <div class="right-nav">
-        <a href="leaderboard.html">Leaderboard</a>
-        <span class="divider">|</span>
-        <a href="login.html">Login / Sign-Up</a>
-    </div>
-  </header>
+  <div class="right-nav">
+      <a href="leaderboard.html">Leaderboard</a>
+      <span class="divider">|</span>
+      <a href="login.html">Login / Sign-Up</a>
+  </div>
+</header>
 
-  <main>
-    <h1>Leaderboard</h1>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum et justo id enim sollicitudin pharetra.</p>
-  </main>
+<main>
+  <h1>Leaderboard</h1>
+  <p>Your stored quiz history across all subjects:</p>
 
-  <script src="../app.js"></script>
+  <table id="leaderboard-table" margin="1" cellpadding="8">
+      <thead>
+        <tr>
+          <th>Subject</th>
+          <th>Difficulty</th>
+          <th>Score</th>
+          <th>Time</th>
+          <th>Date</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+  </table>
+
+</main>
+
+<script src="leaderboard.js"></script>
+
 </body>
 </html>
