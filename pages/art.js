@@ -10,6 +10,8 @@ const currentCategory = CATEGORY.ART;
 let apiURL = buildURL(currentCategory, currentDifficulty);
 // let apiURL = 'https://opentdb.com/api.php?amount=10&category=19&difficulty=easy';
 
+let flaggedQuestions = new Set();   // stores question indices
+
 
 // Decode HTML entities (OpenTDB uses &amp;, &#039;, etc.)
 function decodeHTML(str) {
@@ -60,6 +62,8 @@ async function loadAPIFlashcards() {
 
         // enable "jump to question" clicking
         setupQuestionJumping();
+        setupQuestionJumping();
+        updateRightSideListDisplay(); 
 
     } catch (err) {
         frontDiv.textContent = "Error loading questions.";
@@ -83,6 +87,37 @@ function setMode(mode) {
     if (mode === "flashcards") rightTitle.textContent = "Cards";
     else if (mode === "learn") rightTitle.textContent = "Notes";
     else if (mode === "quiz") rightTitle.textContent = "Questions";
+
+    // show flag button ONLY in learn mode
+    const flagBtn = document.getElementById("flag-btn");
+    if (mode === "learn") {
+        flagBtn.classList.remove("hidden");
+    } else {
+        flagBtn.classList.add("hidden");
+    }
+}
+
+document.getElementById("flag-btn").addEventListener("click", () => {
+    // toggle flag for this index
+    if (flaggedQuestions.has(currentIndex)) {
+        flaggedQuestions.delete(currentIndex);
+    } else {
+        flaggedQuestions.add(currentIndex);
+    }
+
+    updateRightSideListDisplay();
+});
+
+function updateRightSideListDisplay() {
+    const items = document.querySelectorAll(".question-item");
+
+    items.forEach((item, i) => {
+        if (flaggedQuestions.has(i)) {
+            item.classList.add("flagged");
+        } else {
+            item.classList.remove("flagged");
+        }
+    });
 }
 
 // Jump to a specific flashcard when clicking “Question X”
