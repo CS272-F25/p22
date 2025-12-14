@@ -421,3 +421,91 @@ main {
   font-size: 1.2rem;
   font-weight: bold;
 }
+
+/* ================================
+   SUBJECT BLOCK WRAPPER
+================================ */
+.subject-block-container {
+    width: 90%;
+    margin: 2rem;
+}
+
+/* ================================
+   SUBJECT BLOCK LAYOUT
+================================ */
+.subject-block {
+    display: grid;
+    grid-template-columns: 350px auto;
+    gap: 2rem;
+    padding: 2rem;
+    width: 100%;
+    background: white;
+    border: 2px solid #d0d9e6;
+    border-radius: 14px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+/* LEFT SIDE */
+.subject-left {
+    display: flex;
+    flex-direction: column;
+}
+
+.subject-title {
+    margin: 0 0 1rem 0;
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+
+/* 2×2 statistic cards */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+.stat-box {
+    background: #eaf1ff;
+    border: 1px solid #bcd1ff;
+    padding: 1rem;
+    border-radius: 12px;
+    text-align: center;
+}
+
+.stat-box h4 {
+    margin: 0;
+    font-size: 1rem;
+}
+
+.stat-box p {
+    margin: 0.4rem 0 0 0;
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+
+/* ================================
+   RIGHT SIDE — GRAPH BOX
+================================ */
+.subject-right {
+    background: #fafafa;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    padding: 1rem 2.5rem;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+/* GRAPH CANVAS */
+.subject-right canvas {
+    width: 100% !important;      /* Controls horizontal stretch */
+    height: 250px !important;    /* Controls vertical size */
+}
+
+/* Optional extra graph container styling */
+.subject-graph-container {
+    padding: 1rem;
+    background: #fafafa;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+}

@@ -1,188 +1,262 @@
-// Load stats
+// Load stored quiz results
 const stats = JSON.parse(localStorage.getItem("smartSausageStats")) || [];
 
-// ===============================
-// 1. FAVORITE SUBJECT
-// ===============================
+// -----------------------------
+// HELPERS
+// -----------------------------
+function parseTimeString(str) {
+    if (!str || !str.includes(":")) return null;
+    const [m, s] = str.split(":").map(Number);
+    return m * 60 + s;
+}
+
+function normalizeDate(str) {
+    const d = new Date(str);
+    if (isNaN(d)) return null;
+    return d.toISOString().split("T")[0]; // yyyy-mm-dd
+}
+
+
+// -----------------------------
+// FAVORITE SUBJECT
+// -----------------------------
 function computeFavoriteSubject() {
     if (stats.length === 0) return null;
 
     const count = {};
     stats.forEach(r => {
-        if (!count[r.subject]) count[r.subject] = 0;
-        count[r.subject]++;
+        count[r.subject] = (count[r.subject] || 0) + 1;
     });
 
-    const fav = Object.entries(count).sort((a, b) => b[1] - a[1])[0];
-    return fav ? fav[0] : null;
+    return Object.entries(count).sort((a, b) => b[1] - a[1])[0][0];
 }
 
-// Map subject to an icon (use your own images)
 const subjectIcons = {
     Math: "../images/subjects/math1.png",
     Science: "../images/subjects/science1.png",
     Geography: "../images/subjects/geo1.png",
-    History: "../images/history1.png",
-    Art: "../images/art1.png"
+    History: "../images/subjects/history1.png",
+    Art: "../images/subjects/art1.png"
 };
 
-// Display favorite subject
-const favSubject = computeFavoriteSubject();
-if (favSubject) {
-    document.getElementById("fav-subject-img").src = subjectIcons[favSubject];
-    document.getElementById("fav-subject-name").textContent = favSubject;
-} else {
-    document.getElementById("fav-subject-name").textContent = "No data yet";
+const fav = computeFavoriteSubject();
+if (fav) {
+    document.getElementById("fav-subject-img").src = subjectIcons[fav];
+    document.getElementById("fav-subject-name").textContent = fav;
 }
 
 
-// ===============================
-// 2. FASTEST PERFECT SCORE (10/10)
-// ===============================
+// -----------------------------
+// FASTEST PERFECT SCORE
+// -----------------------------
 function computeFastestPerfect() {
     const perfects = stats.filter(r => r.score === 10);
     if (perfects.length === 0) return null;
 
-    function timeToSeconds(t) {
-        const [m, s] = t.split(":").map(Number);
-        return m * 60 + s;
-    }
-
-    perfects.sort((a, b) => timeToSeconds(a.time) - timeToSeconds(b.time));
-
+    perfects.sort((a, b) => parseTimeString(a.time) - parseTimeString(b.time));
     return perfects[0].time;
 }
 
-const fastest = computeFastestPerfect();
 document.getElementById("fastest-time").textContent =
-    fastest ? fastest : "None yet";
+    computeFastestPerfect() ?? "None";
 
 
-// ===============================
-// 3. MOST ACTIVE DAY
-// ===============================
+// -----------------------------
+// MOST ACTIVE DAY
+// -----------------------------
 function computeMostActiveDay() {
     if (stats.length === 0) return null;
 
-    const daily = {};
+    const dayCount = {};
 
     stats.forEach(r => {
-        const day = r.date;
-        if (!daily[day]) daily[day] = 0;
-        daily[day]++;
+        dayCount[r.date] = (dayCount[r.date] || 0) + 1;
     });
 
-    const top = Object.entries(daily).sort((a, b) => b[1] - a[1])[0];
-    return top ? top[0] : null;
+    return Object.entries(dayCount).sort((a, b) => b[1] - a[1])[0][0];
 }
 
-const bestDay = computeMostActiveDay();
 document.getElementById("most-active-day").textContent =
-    bestDay ? bestDay : "No activity yet";
+    computeMostActiveDay() ?? "--";
 
 
-// =======================================================
-// BELOW HERE: SAME CHART CODE AS BEFORE
-// =======================================================
+// -----------------------------
+// SUBJECT-SPECIFIC STATS
+// -----------------------------
+function getSubjectData(subject) {
+    return stats
+        .filter(s => s.subject === subject)
+        .map(s => ({
+            score: s.score,
+            time: parseTimeString(s.time),
+            date: normalizeDate(s.date)
+        }))
+        .filter(s => s.date !== null);
+}
 
-// ---- GROUP BY SUBJECT ----
-function groupBySubject() {
-    const counts = {};
-    stats.forEach(r => {
-        if (!counts[r.subject]) counts[r.subject] = 0;
-        counts[r.subject]++;
+function computeStats(subject) {
+    const data = getSubjectData(subject);
+
+    if (data.length === 0) {
+        return {
+            bestTime: "--",
+            avgScore: "--",
+            totalTime: "--",
+            totalGames: 0,
+            dailyCounts: {}
+        };
+    }
+
+    const perfects = data.filter(d => d.score === 10 && d.time !== null);
+    const bestTime = perfects.length
+        ? Math.min(...perfects.map(d => d.time))
+        : "--";
+
+    const avgScore = (data.reduce((sum, d) => sum + d.score, 0) / data.length).toFixed(2);
+    const totalTime = data.reduce((sum, d) => sum + (d.time ?? 0), 0);
+
+    const dailyCounts = {};
+    data.forEach(d => {
+        dailyCounts[d.date] = (dailyCounts[d.date] || 0) + 1;
     });
-    return counts;
+
+    return {
+        bestTime,
+        avgScore,
+        totalTime,
+        totalGames: data.length,
+        dailyCounts
+    };
 }
 
-const subjectData = groupBySubject();
+// -----------------------------
+// GRAPH RENDERING
+// -----------------------------
+function renderGraph(canvasId, dailyCounts) {
+    const ctx = document.getElementById(canvasId);
 
-// ---- SCORE OVER TIME ----
-const timelineLabels = stats.map(r => r.date);
-const timelineScores = stats.map(r => r.score);
+    const labels = [];
+    const counts = [];
 
-// ---- SCATTER: TIME vs SCORE ----
-function timeToSeconds(t) {
-    const [min, sec] = t.split(":").map(Number);
-    return min * 60 + sec;
-}
+    for (let i = 30; i >= 0; i--) {
+        const d = new Date();
+        d.setDate(d.getDate() - i);
+        const iso = d.toISOString().split("T")[0];
 
-const scatterData = stats.map(r => ({
-    x: r.score,
-    y: timeToSeconds(r.time)
-}));
-
-// ------- CREATE CHARTS -------
-new Chart(document.getElementById("subjectChart"), {
-    type: "bar",
-    data: {
-        labels: Object.keys(subjectData),
-        datasets: [{
-            label: "Total Quizzes",
-            data: Object.values(subjectData),
-            backgroundColor: "rgba(100,150,255,0.7)"
-        }]
+        labels.push(iso.substring(5)); // "MM-DD"
+        counts.push(dailyCounts[iso] || 0);
     }
-});
 
-new Chart(document.getElementById("scoreTimeline"), {
-    type: "line",
-    data: {
-        labels: timelineLabels,
-        datasets: [{
-            label: "Score",
-            data: timelineScores,
-            borderColor: "blue",
-            tension: 0.3
-        }]
-    }
-});
+    new Chart(ctx, {
+        type: "line",
+        data: {
+            labels,
+            datasets: [{
+                label: "Games Played",
+                data: counts,
+                borderColor: "#1a4ac9",
+                backgroundColor: "rgba(26, 74, 201, 0.1)",
+                borderWidth: 2,
+                tension: 0.3
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,  // <-- Makes chart fill container nicely
 
-new Chart(document.getElementById("scatterTimeScore"), {
-    type: "scatter",
-    data: {
-        datasets: [{
-            label: "Time (seconds) vs Score",
-            data: scatterData,
-            backgroundColor: "red"
-        }]
-    },
-    options: {
-        scales: {
-            x: { title: { text: "Score", display: true }},
-            y: { title: { text: "Time (seconds)", display: true }}
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    min: 0,
+                    max: 10,          
+                    ticks: {
+                        stepSize: 2, 
+                    },
+                    grid: {
+                        drawBorder: false,
+                        color: "rgba(0,0,0,0.08)"
+                    }
+                },
+
+                x: {
+                    ticks: {
+                        autoSkip: false,
+                        maxRotation: 65,
+                        minRotation: 65
+                    },
+                    grid: {
+                        display: false
+                    }
+                }
+            },
+
+            plugins: {
+                legend: { display: true }
+            }
         }
-    }
-});
+    });
+}
 
+
+// -----------------------------
+// RENDER SUBJECT BLOCK
+// -----------------------------
+function renderSubject(subject, prefix) {
+    const s = computeStats(subject);
+
+    document.getElementById(`${prefix}-best-time`).textContent =
+        s.bestTime === "--" ? "--" : formatTime(s.bestTime);
+
+    document.getElementById(`${prefix}-average-score`).textContent = s.avgScore;
+    document.getElementById(`${prefix}-total-time`).textContent =
+        s.totalTime === "--" ? "--" : formatTime(s.totalTime);
+
+    document.getElementById(`${prefix}-total-games`).textContent = s.totalGames;
+
+    renderGraph(`${prefix}-graph`, s.dailyCounts);
+}
+
+function formatTime(sec) {
+    if (sec === "--") return "--";
+    const m = String(Math.floor(sec / 60)).padStart(2, "0");
+    const s = String(sec % 60).padStart(2, "0");
+    return `${m}:${s}`;
+}
+
+
+// -----------------------------
+// LEADERBOARD TABLE
+// -----------------------------
 function loadLeaderboard() {
-    const tableBody = document.querySelector("#leaderboard-table tbody");
-
-    // Load from localStorage
-    const stats = JSON.parse(localStorage.getItem("smartSausageStats")) || [];
-
-    // Empty table first
-    tableBody.innerHTML = "";
+    const tbody = document.querySelector("#leaderboard-table tbody");
+    tbody.innerHTML = "";
 
     if (stats.length === 0) {
-        tableBody.innerHTML = `<tr><td colspan="5">No quiz data yet. Go take a quiz!</td></tr>`;
+        tbody.innerHTML = `<tr><td colspan="5">No data yet</td></tr>`;
         return;
     }
 
-    // Add each row
-    stats.forEach(record => {
-        const row = document.createElement("tr");
-
-        row.innerHTML = `
-            <td>${record.subject}</td>
-            <td>${record.difficulty}</td>
-            <td>${record.score}/10</td>
-            <td>${record.time}</td>
-            <td>${record.date}</td>
+    stats.forEach(r => {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+            <td>${r.subject}</td>
+            <td>${r.difficulty}</td>
+            <td>${r.score}/10</td>
+            <td>${r.time}</td>
+            <td>${r.date}</td>
         `;
-
-        tableBody.appendChild(row);
+        tbody.appendChild(tr);
     });
 }
+
+
+// -----------------------------
+// RUN EVERYTHING
+// -----------------------------
+renderSubject("Math", "math");
+renderSubject("Science", "science");
+renderSubject("Geography", "geo");
+renderSubject("History", "history");
+renderSubject("Art", "art");
 
 loadLeaderboard();
