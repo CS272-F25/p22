@@ -10,8 +10,8 @@ const currentCategory = CATEGORY.ART;
 let apiURL = buildURL(currentCategory, currentDifficulty);
 // let apiURL = 'https://opentdb.com/api.php?amount=10&category=19&difficulty=easy';
 
+let currentMode = "flashcards"; // add this global tracker
 let flaggedQuestions = new Set();   // stores question indices
-
 
 // Decode HTML entities (OpenTDB uses &amp;, &#039;, etc.)
 function decodeHTML(str) {
@@ -84,6 +84,8 @@ loadAPIFlashcards();
 function setMode(mode) {
     const rightTitle = document.getElementById("right-title");
 
+    currentMode = mode;
+
     if (mode === "flashcards") rightTitle.textContent = "Cards";
     else if (mode === "learn") rightTitle.textContent = "Notes";
     else if (mode === "quiz") rightTitle.textContent = "Questions";
@@ -95,6 +97,8 @@ function setMode(mode) {
     } else {
         flagBtn.classList.add("hidden");
     }
+
+    updateRightSideListDisplay();
 }
 
 document.getElementById("flag-btn").addEventListener("click", () => {
@@ -112,7 +116,7 @@ function updateRightSideListDisplay() {
     const items = document.querySelectorAll(".question-item");
 
     items.forEach((item, i) => {
-        if (flaggedQuestions.has(i)) {
+        if (currentMode === "learn" && flaggedQuestions.has(i)) {
             item.classList.add("flagged");
         } else {
             item.classList.remove("flagged");
