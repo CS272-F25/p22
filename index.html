@@ -35,13 +35,44 @@
 
   <main>
     <h1>Welcome to Smart Sausage</h1>
-      <p>Smart Sausage is an online learning playground built for curiosity, quick challenges, and fun discoveries. Instead of feeling like homework, everything on the site is designed to be fast, interactive, and a little silly—more like GeoGuessr or Human Benchmark than a traditional study app. Whether you're exploring math puzzles, geography trivia, or short science facts, Smart Sausage turns learning into a lighthearted experience you can enjoy anytime.</p>
 
-    <h4>Where to Get Started?</h4>
-      <p>Get started by exploring any subject that sparks your curiosity—Math, Science, Geography, History, or Art. Make sure to sign up or log in to your account so you can track your progress, unlock achievements, and compete on the global leaderboard! Smart Sausage is all about learning through quick challenges, friendly competition, and discovering new knowledge in a fun, casual way.</p>
+    <p>
+      Smart Sausage is a fast, fun learning playground built for people who love discovering new facts, challenging themselves, and competing with friends. 
+      Instead of boring textbook studying, every subject on Smart Sausage pulls in fresh information from real-world trivia, puzzles, and knowledge far beyond the classroom. 
+      Think of it as a mix between GeoGuessr, Human Benchmark, and a quiz bowl : but bite-sized and a little silly.
+    </p>
 
-    <h4>About the Creators</h4>
-      <p>Smart Sausage was created by three Computer Science majors from the University of Wisconsin–Madison who share a passion for building tools that make learning easier, more fun, and more accessible. What started as a small project between friends quickly grew into a playful platform designed to support students, spark curiosity, and bring a bit of joy to the learning experience.</p>
+    <h4>How Smart Sausage Works</h4>
+
+    <p>
+      Each subject - Math, Science, Geography, History, and Art - includes three interactive learning modes designed to help you practice the way YOU enjoy learning:
+    </p>
+
+    <ul>
+      <li><strong>Flashcards Mode:</strong> Quickly flip through questions and answers, just like real flashcards. Perfect for warming up.</li>
+      <li><strong>Learn Mode:</strong> Study at your own pace. You can flag tricky questions, revisit them, and build deeper understanding without time pressure.</li>
+      <li><strong>Quiz Mode:</strong> A timed challenge where you answer 10 questions, lock in choices, and see how you stack up. Flip counts as a “give up,” so use it wisely!</li>
+    </ul>
+
+    <p>
+      Every quiz can be taken on <strong>Easy</strong>, <strong>Medium</strong>, or <strong>Hard</strong> difficulty. Harder modes use tougher questions, tighter choices, and faster thinking, perfect if you like competition.
+    </p>
+
+    <h4>Your Stats & Leaderboard</h4>
+
+    <p>
+      After each quiz, Smart Sausage automatically saves your score, accuracy, and time for every subject. 
+      You can view your full performance history on the <strong>Leaderboard</strong> page, where you’ll soon be able to compare results with friends, track improvement, and climb subject rankings.
+    </p>
+
+    <p>
+      Whether you're here to sharpen your skills, learn something new, or just see how fast you can take down a quiz, Smart Sausage makes learning fun, fast, and competitive.
+    </p>
+
+    <p>
+      Smart Sausage was built by three UW–Madison computer science students who wanted to turn studying into something playful, social, and genuinely enjoyable.
+    </p>
+
 
     <section class="subject-section">
       <h2 class="subject-title">Choose a Subject</h2>
@@ -98,11 +129,11 @@
           <p class="fun-fact">Hidden detail: The Mona Lisa has no visible eyelashes or eyebrows.</p>
         </a>
 
-        <!-- RANDOM SUBJECT CARD -->
+        <!-- RANDOM SUBJECT -->
         <a class="subject-card" id="random-card">
           <div class="subject-img-container">
-            <img class="subject-img default-img" src="images/random1.png" alt="Random icon">
-            <img class="subject-img hover-img" src="images/random2.png" alt="Random icon hover">
+            <img class="subject-img default-img" src="images/random1.png">
+            <img class="subject-img hover-img" src="images/random2.png">
           </div>
 
           <h3>Random</h3>
@@ -112,13 +143,17 @@
       </div>
     </section>
 
-      <!-- Go Fetch! -->
-    <div class="chase-container">
-      <img  src="./images/ball.png" class="ball" alt="An animated tennis ball." />
-      <img src="./images/logo.png" class="dog" alt="Smart Sausage Logo chasing after the tennis ball." />
-    </div>
-
   </main>
+
+
+  <!-- FIXED RUNNING DOG FOOTER -->
+  <div class="chase-footer">
+    <div class="chase-lane">
+      <img src="images/ball.png" class="ball" alt="ball">
+      <img src="images/logo.png" class="dog" alt="dog">
+    </div>
+  </div>
+
 
   <script>
     // List of subject pages it can choose from
@@ -131,14 +166,12 @@
     ];
 
     document.getElementById("random-card").addEventListener("click", function (e) {
-      e.preventDefault(); // avoid default link behavior
+      e.preventDefault();
 
-      // Pick one at random
       const randomPage = randomDestinations[
         Math.floor(Math.random() * randomDestinations.length)
       ];
 
-      // Redirect
       window.location.href = randomPage;
     });
   </script>

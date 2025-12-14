@@ -12,6 +12,9 @@ body {
     font-family: "Segoe UI", Roboto, Arial, sans-serif;
     margin: 0;
     padding: 0;
+
+    /* Prevent content from being hidden behind fixed dog footer */
+    padding-bottom: 140px; 
 }
 
 /* Flashcard box */
@@ -34,7 +37,6 @@ body {
     white-space: pre-wrap;
 }
 
-/* Default button base style */
 button {
     cursor: pointer;
     border: 1px solid #333;
@@ -97,12 +99,13 @@ header {
 }
 
 /* ----------------------------------------------------------
-   LAYOUT
+   PAGE LAYOUT
 ---------------------------------------------------------- */
 
 main {
-    padding-top: 40px;
-    padding-left: 40px;
+    padding-top: 20px;
+    padding-left: 50px;
+	padding-right: 50px;
 }
 
 .study-layout {
@@ -139,16 +142,15 @@ main {
 }
 
 /* ----------------------------------------------------------
-   NEW FEATURES (QUIZ / LEARN MODE)
+   QUIZ + LEARN FEATURES
 ---------------------------------------------------------- */
 
-/* FLAG BUTTON */
 .flag-container {
     width: 100%;
     display: flex;
-    justify-content: flex-end;  /* pushes button to the right */
+    justify-content: flex-end;
+    padding-right: 1rem;
     margin-bottom: 10px;
-    padding-right: 1rem;        /* aligns with flashcard border */
 }
 
 .flag-btn {
@@ -169,24 +171,19 @@ main {
     font-weight: bold;
 }
 
-/* QUIZ TIMER BOX */
 .timer-box {
     margin-top: 100px;
-    padding: 0.6rem 1rem;          /* smaller like Easy/Medium/Hard */
+    padding: 0.6rem 1rem;
     border: 1px solid #333;
     border-radius: 0.4rem;
     font-size: 1.05rem;
     background: white;
-    text-align: center;
-    width: fit-content;             /* shrink to content size */
+    width: fit-content;
 }
 
-/* ABCD BUTTONS */
 .quiz-opt {
     display: inline-block;
-	margin-top: 10px;
-	margin-left: 5px;
-	margin-right: 5px;
+    margin: 10px 5px 0 5px;
     padding: 0.45rem 0.75rem;
     border: 1px solid #333;
     border-radius: 0.4rem;
@@ -205,7 +202,6 @@ main {
     font-weight: bold;
 }
 
-/* DISABLED (locked question) */
 .disabled-submit,
 .disabled-submit:hover {
     background: #dddddd !important;
@@ -214,7 +210,7 @@ main {
     cursor: not-allowed !important;
 }
 
-/* GRADING COLORS ON RIGHT SIDE */
+/* QUIZ RESULTS */
 .correct {
     color: green;
     font-weight: bold;
@@ -225,38 +221,58 @@ main {
     font-weight: bold;
 }
 
-/* CHASE ANIMATION — unchanged */
-.chase-container {
+/* -------------------------------------------------------
+   NEW FIXED FOOTER: DOG CHASING BALL
+-------------------------------------------------------- */
+
+.chase-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    background: #cfe8ff;
+    border-top: 2px solid #b0d4ff;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    overflow: hidden;
+    z-index: 1000;
+}
+
+.chase-lane {
     position: relative;
     width: 100%;
-    height: 10rem;
+    height: 100%;
     overflow: hidden;
 }
 
 .ball, .dog {
     position: absolute;
-    bottom: 0;
+    bottom: 10px;
+    object-fit: contain;
 }
 
 .ball {
-    height: 2rem;
+    height: 2.8rem;
     animation: roll 8s linear infinite;
-    margin-bottom: 1rem;
 }
 
 .dog {
     height: 4rem;
     animation: chase 8s linear infinite;
-    animation-delay: 2s;
+    animation-delay: 1s;
 }
 
 @keyframes roll {
-    0% { transform: translateX(-10rem); }
+    0% { transform: translateX(-150px); }
     100% { transform: translateX(120vw); }
 }
 
 @keyframes chase {
-    0% { transform: translateX(-12rem); }
+    0% { transform: translateX(-200px); }
     100% { transform: translateX(120vw); }
 }
 
@@ -275,32 +291,26 @@ main {
   margin-bottom: 2rem;
 }
 
-/* ---- GRID ---- */
 .subject-grid {
   display: grid;
   gap: 2rem;
   width: 90%;
   margin: auto;
-
-  /* Desktop default → 3 cards per row */
   grid-template-columns: repeat(3, 1fr);
 }
 
-/* Medium screens → 2 per row */
 @media (max-width: 1000px) {
   .subject-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
-/* Small screens → 1 per row */
 @media (max-width: 600px) {
   .subject-grid {
     grid-template-columns: repeat(1, 1fr);
   }
 }
 
-/* ---- CARD ---- */
 .subject-card {
   background: #ffffff;
   border-radius: 12px;
@@ -322,7 +332,6 @@ main {
   box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.15);
 }
 
-/* ---- IMAGES ---- */
 .subject-img-container {
   width: 100px;
   height: 100px;
@@ -344,7 +353,6 @@ main {
 .subject-card:hover .default-img { opacity: 0; }
 .subject-card:hover .hover-img { opacity: 1; }
 
-/* ---- TEXT ---- */
 .subject-card h3 {
   font-size: 1.4rem;
   margin: 0.5rem 0;
@@ -356,7 +364,6 @@ main {
   color: #444;
 }
 
-/* ---- Placeholder card ---- */
 .placeholder {
   background: #e9f2ff;
   display: flex;
