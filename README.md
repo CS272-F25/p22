@@ -1,12 +1,11 @@
 # Smart Sausage  
-
-### CS472: Intro to Web Development – Final Project Proposal  
+## CS472: Intro to Web Development – Final Project  
 University of Wisconsin–Madison  
 Group 22 – Smart Sausage
 
 ---
 
-## Group Members
+### Group Members
 
 | Name (Canvas) | GitHub Username |
 |---------------|-----------------|
@@ -16,82 +15,142 @@ Group 22 – Smart Sausage
 
 ---
 
-## Project Title  
-Smart Sausage
+### Project Description
+
+Smart Sausage is a playful, fast-paced online learning platform designed to make education feel casual and enjoyable rather than formal or academic.  
+It draws inspiration from curiosity-based sites such as GeoGuessr, Human Benchmark, and Philosophy Experiments.
+
+Instead of acting like traditional study tools (Quizlet, Coursera), Smart Sausage provides:
+- Short quizzes
+- Flashcards
+- Subject-based challenges
+- Light facts and trivia
+
+The goal is to encourage users to explore knowledge when bored, competitive, or curious, with no pressure to "study."  
+Each subject page supports Flashcards, Learn Mode, and Quiz Mode, powered by a question API.
+
+A dedicated Leaderboard / Stats system displays user history, best scores, time spent, and game activity.
 
 ---
 
-## Project Description
+### Key Features
 
-Smart Sausage is a fun and engaging online learning platform designed to make education interactive, social, and entertaining. The project is inspired by websites such as GeoGuessr, Human Benchmark, and Philosophy Experiments, which prioritize curiosity, experimentation, and challenge over traditional academic formats.
+#### Subject-Based Learning
+- Math, Science, Geography, History, Art  
+- Each includes facts, flashcards, and quizzes  
+- Three learning modes: Flashcards, Learn Mode, Quiz Mode  
+- Dynamic API-loaded questions  
+- Automatic progress tracking with LocalStorage  
 
-Instead of functioning like study tools such as Quizlet or Coursera, Smart Sausage aims to be a lighthearted and fast-paced experience that users can enjoy when they are bored, want to compete with friends, or want to learn something new without feeling like they are studying.
+#### Flashcard + Quiz System
+- Flip card interaction  
+- Multiple-choice quiz interface  
+- Timer, submit locking, answer review  
+- Flagging and navigation features  
+- Save-to-favourites functionality  
 
-The platform offers subject-based quizzes and flashcards that help learners explore different topics in an enjoyable way. Subjects currently include Math, Science, Geography, History, and Art. Each quiz includes short facts or playful challenges to make the experience both educational and memorable.
+#### Leaderboard & Stats
+- Summary cards for overall performance  
+- Per-subject analytics:  
+  - Best time  
+  - Average score  
+  - Total games  
+  - Total time spent  
+- Activity graph showing quizzes played per day  
+- Saved quiz history  
 
-In future iterations, Smart Sausage will introduce additional features, such as a Leaderboard System that tracks user progress and supports friendly competition. Planned additions include login/sign-up functionality, user statistics, challenge streaks, and multiplayer or social features.
-
-Smart Sausage is designed to promote curiosity, discovery, and casual learning through simple interactions and short, engaging activities. The focus is on making knowledge accessible and enjoyable rather than academic or formal.
+#### Favourites (Saved Flashcards)
+- Users can bookmark questions  
+- Saved with subject, difficulty, correct answer, and date  
+- Filter by:  
+  - Subject  
+  - Difficulty  
+  - Date (Today, Week, Month)  
+- Responsive card grid layout  
 
 ---
 
-## Key Features
-
-- Subject-based quiz pages (Math, Science, Geography, History, Art)
-- Flashcard tools with import/export and automatic LocalStorage saving
-- Clean, minimal layout with a consistent global header and navigation
-- Light blue color theme and modern typography for a simple, welcoming interface
-- Dedicated Leaderboard and Login/Sign-Up sections for future expansion
-
----
-
-## Future Plans
-
-- Leaderboard scoring system
-- Login/sign-up functionality
-- User profiles and progress tracking
-- Multiplayer quiz modes
-- Daily challenges
-- Additional subjects and minigames
-- Achievement badges and streaks
-- Enhanced UI animations and effects
-
----
-
-## Technology Stack
+### Technology Stack
 
 - HTML5  
-- CSS3 (global stylesheet)  
-- JavaScript  
+- CSS3  
+- JavaScript (ES6)  
 - LocalStorage API  
-- Git and GitHub  
-- GitHub Pages hosting
+- Chart.js (Leaderboard graphs)  
+- Git + GitHub  
+- GitHub Pages hosting  
 
 ---
 
-## Project Structure
+### Project Structure
 
-````text
+```
+/p22
+│
+├── global.css
+│
+├── app.js
+├── api_constants.js
+│
+├── index.html
+│
+├── images/
+│   ├── logo.png
+│   ├── ball.png
+│   ├── math1.png
+│   ├── math2.png
+│   ├── science1.png
+│   ├── science2.png
+│   ├── geo1.png
+│   ├── geo2.png
+│   ├── history1.png
+│   ├── history2.png
+│   ├── art1.png
+│   ├── art2.png
+│   ├── random1.png
+│   └── random2.png
+│
+└── pages/
+    ├── math.html
+    ├── science.html
+    ├── geography.html
+    ├── history.html
+    ├── art.html
+    ├── flashcard.html
+    ├── leaderboard.html
+    ├── saved.html
+    │
+    ├── math.js
+    ├── science.js
+    ├── geography.js
+    ├── history.js
+    ├── art.js
+    ├── leaderboard.js
+    └── saved.js
+```
 
-/
-|-- index.html
-|-- global.css
-|-- app.js
-|
-|-- images/
-|   `-- logo.png
-|
-`-- pages/
-    |-- math.html
-    |-- science.html
-    |-- geography.html
-    |-- history.html
-    |-- art.html
-    `-- leaderboard.html
-
-````
 ---
 
-## Project Goal
+### Future Plans
 
-The primary goal of Smart Sausage is to create a learning environment that is informal, playful, and accessible. It is intended for users who want to explore interesting topics, challenge themselves, or compete with friends in a low-pressure setting. The project emphasizes simplicity, creativity, and general curiosity rather than rigorous academic study.
+- Real login / user authentication system  
+- Cloud database for quiz history  
+- Multiplayer timed challenges  
+- Daily quizzes and streak bonuses  
+- Achievements, badges, and ranks  
+- More subjects and mini-games  
+
+---
+
+### Project Goal
+
+Smart Sausage aims to create an informal, curiosity-driven learning environment that users enjoy casually.  
+It focuses on:
+- Short, fun interactions  
+- Discovery over memorization  
+- Competition without pressure  
+- A clean, modern interface  
+
+The platform is designed to make knowledge feel lightweight, accessible, and enjoyable.
+
+---

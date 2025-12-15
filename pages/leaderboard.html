@@ -2,232 +2,232 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Leaderboard - Smart Sausage</title>
-    <link rel="stylesheet" href="../global.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Leaderboard - Smart Sausage</title>
+	<link rel="stylesheet" href="../global.css">
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body>
 
-<header>
-    <div class="left-header">
-        <img src="../images/logo.png" class="logo-img">
-        <a class="logo" href="../index.html">Smart Sausage</a>
-    </div>
+	<header>
+		<div class="left-header">
+			<img src="../images/logo.png" class="logo-img">
+			<a class="logo" href="../index.html">Smart Sausage</a>
+		</div>
 
-    <nav class="center-nav">
-        <a href="math.html">Math</a>
-        <a href="science.html">Science</a>
-        <a href="geography.html">Geography</a>
-        <a href="history.html">History</a>
-        <a href="art.html">Art</a>
-    </nav>
+		<nav class="center-nav">
+			<a href="math.html">Math</a>
+			<a href="science.html">Science</a>
+			<a href="geography.html">Geography</a>
+			<a href="history.html">History</a>
+			<a href="art.html">Art</a>
+		</nav>
 
-    <div class="right-nav">
-        <a href="leaderboard.html"><strong>Leaderboard</strong></a>
-        <span class="divider">|</span>
-        <a href="saved.html">Favourites</a>
-    </div>
-</header>
+		<div class="right-nav">
+			<a href="leaderboard.html"><strong>Leaderboard</strong></a>
+			<span class="divider">|</span>
+			<a href="saved.html">Favourites</a>
+		</div>
+	</header>
 
-<main>
+	<main>
 
-    <!-- TOP WRAPPER -->
-    <section class="top-stats">
+		<!-- TOP WRAPPER -->
+		<section class="top-stats">
 
-        <div class="stat-card">
-            <h3>Favorite Subject</h3>
-            <img id="fav-subject-img" class="stat-icon" src="">
-            <p id="fav-subject-name">—</p>
-        </div>
+			<div class="stat-card">
+				<h3>Favorite Subject</h3>
+				<img id="fav-subject-img" class="stat-icon" src="">
+				<p id="fav-subject-name">—</p>
+			</div>
 
-        <div class="stat-card">
-            <h3>Fastest Perfect Score</h3>
-            <p id="fastest-time" class="stat-value">—</p>
-        </div>
+			<div class="stat-card">
+				<h3>Fastest Perfect Score</h3>
+				<p id="fastest-time" class="stat-value">—</p>
+			</div>
 
-        <div class="stat-card">
-            <h3>Most Active Day</h3>
-            <p id="most-active-day" class="stat-value">—</p>
-        </div>
+			<div class="stat-card">
+				<h3>Most Active Day</h3>
+				<p id="most-active-day" class="stat-value">—</p>
+			</div>
 
-    </section>
-
-
-<!-- MATH BLOCK -->
-    <section class="subject-block-container">
-        <div class="subject-block">
-            <!-- LEFT SIDE -->
-            <div class="subject-left">
-                <h2 class="subject-title">Math</h2>
-                <div class="stats-grid">
-                    <div class="stat-box">
-                        <h4>Best Time (10/10)</h4>
-                        <p id="math-best-time">--</p>
-                    </div>
-                    <div class="stat-box">
-                        <h4>Average Score</h4>
-                        <p id="math-average-score">--</p>
-                    </div>
-                    <div class="stat-box">
-                        <h4>Total Time Spent</h4>
-                        <p id="math-total-time">--</p>
-                    </div>
-                    <div class="stat-box">
-                        <h4>Total Games</h4>
-                        <p id="math-total-games">--</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- RIGHT SIDE GRAPH -->
-            <div class="subject-right">
-                <canvas id="math-graph"></canvas>
-            </div>
-        </div>
-    </section>
-
-<!-- SCIENCE BLOCK -->
-<section class="subject-block-container">
-    <div class="subject-block">
-
-        <!-- LEFT SIDE -->
-        <div class="subject-left">
-            <h2 class="subject-title">Science</h2>
-            <div class="stats-grid">
-                <div class="stat-box">
-                    <h4>Best Time (10/10)</h4>
-                    <p id="science-best-time">--</p>
-                </div>
-                <div class="stat-box">
-                    <h4>Average Score</h4>
-                    <p id="science-average-score">--</p>
-                </div>
-                <div class="stat-box">
-                    <h4>Total Time Spent</h4>
-                    <p id="science-total-time">--</p>
-                </div>
-                <div class="stat-box">
-                    <h4>Total Games</h4>
-                    <p id="science-total-games">--</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- RIGHT SIDE GRAPH -->
-        <div class="subject-right">
-            <canvas id="science-graph"></canvas>
-        </div>
-    </div>
-</section>
-
-<!-- GEOGRAPHY BLOCK -->
-<section class="subject-block-container">
-    <div class="subject-block">
-
-        <!-- LEFT SIDE -->
-        <div class="subject-left">
-            <h2 class="subject-title">Geography</h2>
-            <div class="stats-grid">
-                <div class="stat-box">
-                    <h4>Best Time (10/10)</h4>
-                    <p id="geo-best-time">--</p>
-                </div>
-                <div class="stat-box">
-                    <h4>Average Score</h4>
-                    <p id="geo-average-score">--</p>
-                </div>
-                <div class="stat-box">
-                    <h4>Total Time Spent</h4>
-                    <p id="geo-total-time">--</p>
-                </div>
-                <div class="stat-box">
-                    <h4>Total Games</h4>
-                    <p id="geo-total-games">--</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- RIGHT SIDE GRAPH -->
-        <div class="subject-right">
-            <canvas id="geo-graph"></canvas>
-        </div>
-    </div>
-</section>
+		</section>
 
 
+		<!-- MATH BLOCK -->
+		<section class="subject-block-container">
+			<div class="subject-block">
+				<!-- LEFT SIDE -->
+				<div class="subject-left">
+					<h2 class="subject-title">Math</h2>
+					<div class="stats-grid">
+						<div class="stat-box">
+							<h4>Best Time (10/10)</h4>
+							<p id="math-best-time">--</p>
+						</div>
+						<div class="stat-box">
+							<h4>Average Score</h4>
+							<p id="math-average-score">--</p>
+						</div>
+						<div class="stat-box">
+							<h4>Total Time Spent</h4>
+							<p id="math-total-time">--</p>
+						</div>
+						<div class="stat-box">
+							<h4>Total Games</h4>
+							<p id="math-total-games">--</p>
+						</div>
+					</div>
+				</div>
 
-<!-- HISTORY BLOCK -->
-<section class="subject-block-container">
-    <div class="subject-block">
+				<!-- RIGHT SIDE GRAPH -->
+				<div class="subject-right">
+					<canvas id="math-graph"></canvas>
+				</div>
+			</div>
+		</section>
 
-        <!-- LEFT SIDE -->
-        <div class="subject-left">
-            <h2 class="subject-title">History</h2>
-            <div class="stats-grid">
-                <div class="stat-box">
-                    <h4>Best Time (10/10)</h4>
-                    <p id="history-best-time">--</p>
-                </div>
-                <div class="stat-box">
-                    <h4>Average Score</h4>
-                    <p id="history-average-score">--</p>
-                </div>
-                <div class="stat-box">
-                    <h4>Total Time Spent</h4>
-                    <p id="history-total-time">--</p>
-                </div>
-                <div class="stat-box">
-                    <h4>Total Games</h4>
-                    <p id="history-total-games">--</p>
-                </div>
-            </div>
-        </div>
+		<!-- SCIENCE BLOCK -->
+		<section class="subject-block-container">
+			<div class="subject-block">
 
-        <!-- RIGHT SIDE GRAPH -->
-        <div class="subject-right">
-            <canvas id="history-graph"></canvas>
-        </div>
-    </div>
-</section>
+				<!-- LEFT SIDE -->
+				<div class="subject-left">
+					<h2 class="subject-title">Science</h2>
+					<div class="stats-grid">
+						<div class="stat-box">
+							<h4>Best Time (10/10)</h4>
+							<p id="science-best-time">--</p>
+						</div>
+						<div class="stat-box">
+							<h4>Average Score</h4>
+							<p id="science-average-score">--</p>
+						</div>
+						<div class="stat-box">
+							<h4>Total Time Spent</h4>
+							<p id="science-total-time">--</p>
+						</div>
+						<div class="stat-box">
+							<h4>Total Games</h4>
+							<p id="science-total-games">--</p>
+						</div>
+					</div>
+				</div>
 
-<!-- ART BLOCK -->
-<section class="subject-block-container">
-    <div class="subject-block">
+				<!-- RIGHT SIDE GRAPH -->
+				<div class="subject-right">
+					<canvas id="science-graph"></canvas>
+				</div>
+			</div>
+		</section>
 
-        <!-- LEFT SIDE -->
-        <div class="subject-left">
-            <h2 class="subject-title">Art</h2>
-            <div class="stats-grid">
-                <div class="stat-box">
-                    <h4>Best Time (10/10)</h4>
-                    <p id="art-best-time">--</p>
-                </div>
-                <div class="stat-box">
-                    <h4>Average Score</h4>
-                    <p id="art-average-score">--</p>
-                </div>
-                <div class="stat-box">
-                    <h4>Total Time Spent</h4>
-                    <p id="art-total-time">--</p>
-                </div>
-                <div class="stat-box">
-                    <h4>Total Games</h4>
-                    <p id="art-total-games">--</p>
-                </div>
-            </div>
-        </div>
+		<!-- GEOGRAPHY BLOCK -->
+		<section class="subject-block-container">
+			<div class="subject-block">
 
-        <!-- RIGHT SIDE GRAPH -->
-        <div class="subject-right">
-            <canvas id="art-graph"></canvas>
-        </div>
-    </div>
-</section>
+				<!-- LEFT SIDE -->
+				<div class="subject-left">
+					<h2 class="subject-title">Geography</h2>
+					<div class="stats-grid">
+						<div class="stat-box">
+							<h4>Best Time (10/10)</h4>
+							<p id="geo-best-time">--</p>
+						</div>
+						<div class="stat-box">
+							<h4>Average Score</h4>
+							<p id="geo-average-score">--</p>
+						</div>
+						<div class="stat-box">
+							<h4>Total Time Spent</h4>
+							<p id="geo-total-time">--</p>
+						</div>
+						<div class="stat-box">
+							<h4>Total Games</h4>
+							<p id="geo-total-games">--</p>
+						</div>
+					</div>
+				</div>
 
-<!-- 
+				<!-- RIGHT SIDE GRAPH -->
+				<div class="subject-right">
+					<canvas id="geo-graph"></canvas>
+				</div>
+			</div>
+		</section>
+
+
+
+		<!-- HISTORY BLOCK -->
+		<section class="subject-block-container">
+			<div class="subject-block">
+
+				<!-- LEFT SIDE -->
+				<div class="subject-left">
+					<h2 class="subject-title">History</h2>
+					<div class="stats-grid">
+						<div class="stat-box">
+							<h4>Best Time (10/10)</h4>
+							<p id="history-best-time">--</p>
+						</div>
+						<div class="stat-box">
+							<h4>Average Score</h4>
+							<p id="history-average-score">--</p>
+						</div>
+						<div class="stat-box">
+							<h4>Total Time Spent</h4>
+							<p id="history-total-time">--</p>
+						</div>
+						<div class="stat-box">
+							<h4>Total Games</h4>
+							<p id="history-total-games">--</p>
+						</div>
+					</div>
+				</div>
+
+				<!-- RIGHT SIDE GRAPH -->
+				<div class="subject-right">
+					<canvas id="history-graph"></canvas>
+				</div>
+			</div>
+		</section>
+
+		<!-- ART BLOCK -->
+		<section class="subject-block-container">
+			<div class="subject-block">
+
+				<!-- LEFT SIDE -->
+				<div class="subject-left">
+					<h2 class="subject-title">Art</h2>
+					<div class="stats-grid">
+						<div class="stat-box">
+							<h4>Best Time (10/10)</h4>
+							<p id="art-best-time">--</p>
+						</div>
+						<div class="stat-box">
+							<h4>Average Score</h4>
+							<p id="art-average-score">--</p>
+						</div>
+						<div class="stat-box">
+							<h4>Total Time Spent</h4>
+							<p id="art-total-time">--</p>
+						</div>
+						<div class="stat-box">
+							<h4>Total Games</h4>
+							<p id="art-total-games">--</p>
+						</div>
+					</div>
+				</div>
+
+				<!-- RIGHT SIDE GRAPH -->
+				<div class="subject-right">
+					<canvas id="art-graph"></canvas>
+				</div>
+			</div>
+		</section>
+
+		<!-- 
     <h2>Your Quiz History</h2>
     <table id="leaderboard-table" margin="1" cellpadding="8">
         <thead>
@@ -243,16 +243,17 @@
     </table> 
 -->
 
-<!-- FIXED RUNNING DOG FOOTER -->
-  <div class="chase-footer">
-    <div class="chase-lane">
-      <img src="../images/ball.png" class="ball" alt="ball">
-      <img src="../images/logo.png" class="dog" alt="dog">
-    </div>
-  </div>
-</main>
+		<!-- FIXED RUNNING DOG FOOTER -->
+		<div class="chase-footer">
+			<div class="chase-lane">
+				<img src="../images/ball.png" class="ball" alt="ball">
+				<img src="../images/logo.png" class="dog" alt="dog">
+			</div>
+		</div>
+	</main>
 
-<script src="leaderboard.js"></script>
+	<script src="leaderboard.js"></script>
 
 </body>
+
 </html>

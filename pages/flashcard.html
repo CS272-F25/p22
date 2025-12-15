@@ -1,70 +1,73 @@
 <!doctype html>
 <html lang="en">
+
 <head>
-  <meta charset="utf-8" />
-  <title>Smart Flashcard</title>
-  <link rel="stylesheet" href="../global.css">
+	<meta charset="utf-8" />
+	<title>Smart Flashcard</title>
+	<link rel="stylesheet" href="../global.css">
 </head>
+
 <body>
 
-<header>
-    <div class="left-header">
-        <img src="../images/logo.png" class="logo-img" alt="Smart Sausage Logo">
-        <a class="logo" href="../index.html">Smart Sausage</a>
-    </div>
+	<header>
+		<div class="left-header">
+			<img src="../images/logo.png" class="logo-img" alt="Smart Sausage Logo">
+			<a class="logo" href="../index.html">Smart Sausage</a>
+		</div>
 
-    <nav class="center-nav">
-        <a href="math.html">Math</a>
-        <a href="science.html">Science</a>
-        <a href="geography.html">Geography</a>
-        <a href="history.html">History</a>
-        <a href="art.html">Art</a>
-        <a href="flashcard.html">Flashcards</a>
-    </nav>
+		<nav class="center-nav">
+			<a href="math.html">Math</a>
+			<a href="science.html">Science</a>
+			<a href="geography.html">Geography</a>
+			<a href="history.html">History</a>
+			<a href="art.html">Art</a>
+			<a href="flashcard.html">Flashcards</a>
+		</nav>
 
-    <div class="right-nav">
-        <a href="leaderboard.html">Leaderboard</a>
-        <span class="divider">|</span>
-        <a href="saved.html">Favourites</a>
-    </div>
-</header>
+		<div class="right-nav">
+			<a href="leaderboard.html">Leaderboard</a>
+			<span class="divider">|</span>
+			<a href="saved.html">Favourites</a>
+		</div>
+	</header>
 
-<main>
-<!--display the flashcards next-->
-<div id="flashcard" class="hidden">
-  <div id="front"></div>
-  <div id="back" class="hidden"></div>
-</div>
+	<main>
+		<!--display the flashcards next-->
+		<div id="flashcard" class="hidden">
+			<div id="front"></div>
+			<div id="back" class="hidden"></div>
+		</div>
 
-<!--card controllers-->
-<div id="controls" class="hidden">
-  <button id="prevBtn">Prev</button>
-  <button id="flipBtn">Flip</button>
-  <button id="nextBtn">Next</button>
-</div>
+		<!--card controllers-->
+		<div id="controls" class="hidden">
+			<button id="prevBtn">Prev</button>
+			<button id="flipBtn">Flip</button>
+			<button id="nextBtn">Next</button>
+		</div>
 
-<!--new cards here-->
-<div id="addCardSection" class="hidden">
-  <p>Add Card</p>
-  <input type="text" id="newFront" placeholder="Front"><br>
-  <input type="text" id="newBack" placeholder="Back"><br>
-  <button id="addBtn">Add</button>
-</div>
+		<!--new cards here-->
+		<div id="addCardSection" class="hidden">
+			<p>Add Card</p>
+			<input type="text" id="newFront" placeholder="Front"><br>
+			<input type="text" id="newBack" placeholder="Back"><br>
+			<button id="addBtn">Add</button>
+		</div>
 
-<!--import flashcards here-->
-<div id="importArea">
-  <button id="importBtn">Import Flashcards</button>
-  <input type="file" id="csvFile" accept=".csv" class="hidden">
-</div>
+		<!--import flashcards here-->
+		<div id="importArea">
+			<button id="importBtn">Import Flashcards</button>
+			<input type="file" id="csvFile" accept=".csv" class="hidden">
+		</div>
 
-<!--export button for flashcards-->
-<div id="exportSection" class="hidden">
-  <button id="exportBtn">Export CSV</button>
-</div>
-</main>
+		<!--export button for flashcards-->
+		<div id="exportSection" class="hidden">
+			<button id="exportBtn">Export CSV</button>
+		</div>
+	</main>
 
-<!--import the app.js scritps here so we have functionaility-->
-<script src="../app.js"></script>
+	<!--import the app.js scritps here so we have functionaility-->
+	<script src="../app.js"></script>
 
 </body>
+
 </html>
