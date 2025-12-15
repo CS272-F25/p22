@@ -27,6 +27,15 @@ function decodeHTML(str) {
     return txt.value;
 }
 
+function showSaveToast() {
+    const toast = document.getElementById("save-toast");
+    toast.classList.add("show");
+
+    setTimeout(() => {
+        toast.classList.remove("show");
+    }, 1500);
+}
+
 async function loadAPIFlashcards() {
     try {
         const response = await fetch(apiURL);
@@ -104,6 +113,7 @@ function setMode(mode) {
 
     const flagBtn = document.getElementById("flag-btn");
     const flipBtn = document.getElementById("flipBtn");
+    const saveBtn = document.getElementById("save-btn");
     const quizTimer = document.getElementById("quiz-timer");
     const quizOptions = document.getElementById("quiz-options");
     const submitBtn = document.getElementById("submitBtn");
@@ -112,6 +122,7 @@ function setMode(mode) {
         rightTitle.textContent = "Cards";
         flagBtn.classList.add("hidden");
         flipBtn.classList.remove("hidden");
+        saveBtn.classList.remove("hidden");
         quizTimer.classList.add("hidden");
         quizOptions.classList.add("hidden");
         submitBtn.classList.add("hidden");
@@ -121,6 +132,7 @@ function setMode(mode) {
         rightTitle.textContent = "Notes";
         flagBtn.classList.remove("hidden");
         flipBtn.classList.remove("hidden");
+        saveBtn.classList.add("hidden");
         quizTimer.classList.add("hidden");
         quizOptions.classList.add("hidden");
         submitBtn.classList.add("hidden");
@@ -130,6 +142,7 @@ function setMode(mode) {
         rightTitle.textContent = "Questions";
         flagBtn.classList.add("hidden");       
         flipBtn.classList.remove("hidden");
+        saveBtn.classList.add("hidden");
         quizTimer.classList.remove("hidden");
         quizOptions.classList.remove("hidden");
         submitBtn.classList.remove("hidden");   // SHOW submit button in quiz
@@ -434,3 +447,34 @@ function saveQuizResultsToLocalStorage(subject, difficulty, score, time) {
 
     localStorage.setItem("smartSausageStats", JSON.stringify(stats));
 }
+
+document.getElementById("save-btn").addEventListener("click", () => {
+    if (currentMode !== "flashcards") return;
+
+    const card = flashcards[currentIndex];
+    const correctIndex = questionResults[currentIndex].correctIndex;
+    const correctAnswer = card.back;   // already contains the correct answer text
+
+    // Build entry
+    const entry = {
+        subject: "Art",               // CHANGE THIS per subject file
+        difficulty: currentDifficulty,
+        question: card.front,
+        answer: correctAnswer,
+        date: new Date().toLocaleDateString()
+    };
+
+    // Load old saved list
+    let saved = JSON.parse(localStorage.getItem("savedFlashcards") || "[]");
+
+    // Prevent duplicates
+    const exists = saved.some(
+        item => item.question === entry.question && item.subject === entry.subject
+    );
+
+    if (!exists) {
+        saved.push(entry);
+        localStorage.setItem("savedFlashcards", JSON.stringify(saved));
+        showSaveToast();
+    }
+});

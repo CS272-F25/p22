@@ -4,7 +4,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Art - Smart Sausage</title>
+	<title>Favourite - Smart Sausage</title>
 	<link rel="stylesheet" href="../global.css">
 </head>
 
@@ -32,7 +32,49 @@
 	</header>
 
 	<main>
-  </main>
+		<h2>Saved Flashcards</h2>
 
-  </body>
+		<table id="saved-table" cellpadding="8">
+			<thead>
+				<tr>
+					<th>Subject</th>
+					<th>Difficulty</th>
+					<th>Question</th>
+					<th>Correct Answer</th>
+					<th>Date Saved</th>
+				</tr>
+			</thead>
+			<tbody></tbody>
+		</table>
+  	</main>
+
+	<script>
+		function loadSaved() {
+			const tableBody = document.querySelector("#saved-table tbody");
+
+			const saved = JSON.parse(localStorage.getItem("savedFlashcards") || "[]");
+
+			tableBody.innerHTML = "";
+
+			if (saved.length === 0) {
+				tableBody.innerHTML = `<tr><td colspan="5">No saved flashcards yet.</td></tr>`;
+				return;
+			}
+
+			saved.forEach(entry => {
+				const row = document.createElement("tr");
+				row.innerHTML = `
+					<td>${entry.subject}</td>
+					<td>${entry.difficulty}</td>
+					<td>${entry.question.replace(/\n/g, "<br>")}</td>
+					<td>${entry.answer}</td>
+					<td>${entry.date}</td>
+				`;
+				tableBody.appendChild(row);
+			});
+		}
+
+		loadSaved();
+	</script>
+</body>
 </html>
