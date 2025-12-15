@@ -32,6 +32,7 @@
 	</header>
 
 	<main>
+		<!-- 
 		<h2>Saved Flashcards</h2>
 
 		<table id="saved-table" cellpadding="8">
@@ -45,36 +46,119 @@
 				</tr>
 			</thead>
 			<tbody></tbody>
-		</table>
-  	</main>
+		</table> 
+		-->
+
+		<!-- FILTER BAR -->
+		<div class="filter-bar">
+			<select id="filter-subject">
+				<option value="all">All Subjects</option>
+				<option value="Math">Math</option>
+				<option value="Science">Science</option>
+				<option value="Geography">Geography</option>
+				<option value="History">History</option>
+				<option value="Art">Art</option>
+			</select>
+
+			<select id="filter-difficulty">
+				<option value="all">All Difficulties</option>
+				<option value="easy">Easy</option>
+				<option value="medium">Medium</option>
+				<option value="hard">Hard</option>
+			</select>
+
+			<select id="filter-date">
+				<option value="all">Any Time</option>
+				<option value="today">Today</option>
+				<option value="week">Last Week</option>
+				<option value="month">Last Month</option>
+			</select>
+		</div>
+
+		<!-- SAVED FLASHCARDS -->
+		<div id="saved-list" class="saved-grid"></div>
+
+	</main>
 
 	<script>
+
+		function formatQuestionText(raw) {
+			return raw
+				.replace(/(\d+\.)/g, "<br>$1")   // new lines before each option
+				.replace(/\\n/g, "<br>")         // if API stored \n, convert to <br>
+				.replace(/\s*<br>\s*<br>/g, "<br>") // clean double breaks
+				.trim();
+		}
+
 		function loadSaved() {
-			const tableBody = document.querySelector("#saved-table tbody");
+			const saved = JSON.parse(localStorage.getItem("savedFlashcards")) || [];
 
-			const saved = JSON.parse(localStorage.getItem("savedFlashcards") || "[]");
+			const subjectFilter = document.getElementById("filter-subject").value;
+			const difficultyFilter = document.getElementById("filter-difficulty").value;
+			const dateFilter = document.getElementById("filter-date").value;
 
-			tableBody.innerHTML = "";
+			const list = document.getElementById("saved-list");
+			list.innerHTML = "";
 
-			if (saved.length === 0) {
-				tableBody.innerHTML = `<tr><td colspan="5">No saved flashcards yet.</td></tr>`;
+			const now = new Date();
+
+			const filtered = saved.filter(item => {
+				if (subjectFilter !== "all" && item.subject !== subjectFilter) return false;
+				if (difficultyFilter !== "all" && item.difficulty !== difficultyFilter) return false;
+
+				// DATE FILTER
+				const savedDate = new Date(item.date);
+				const diffDays = (now - savedDate) / (1000 * 60 * 60 * 24);
+
+				if (dateFilter === "today" && diffDays > 1) return false;
+				if (dateFilter === "week" && diffDays > 7) return false;
+				if (dateFilter === "month" && diffDays > 30) return false;
+
+				return true;
+			});
+
+			if (filtered.length === 0) {
+				list.innerHTML = "<p>No saved cards match your filters.</p>";
 				return;
 			}
 
-			saved.forEach(entry => {
-				const row = document.createElement("tr");
-				row.innerHTML = `
-					<td>${entry.subject}</td>
-					<td>${entry.difficulty}</td>
-					<td>${entry.question.replace(/\n/g, "<br>")}</td>
-					<td>${entry.answer}</td>
-					<td>${entry.date}</td>
-				`;
-				tableBody.appendChild(row);
+			filtered.forEach(item => {
+				const card = document.createElement("div");
+				card.className = "saved-card";
+
+				card.innerHTML = `
+    <div class="saved-header">${item.subject}</div>
+    <div class="saved-subheader">${item.difficulty}</div>
+
+    <hr>
+
+    <div class="saved-body">
+        <p><strong>Question:</strong></p>
+        <p>${formatQuestionText(item.question)}</p>
+
+        <hr>
+
+        <p><strong>Answer:</strong></p>
+        <p>${formatQuestionText(item.answer)}</p>
+    </div>
+
+    <div class="saved-footer">Saved on: ${item.date}</div>
+`;
+
+
+				list.appendChild(card);
 			});
 		}
 
+		// Attach filter listeners
+		document.getElementById("filter-subject").addEventListener("change", loadSaved);
+		document.getElementById("filter-difficulty").addEventListener("change", loadSaved);
+		document.getElementById("filter-date").addEventListener("change", loadSaved);
+
+		// Load immediately
 		loadSaved();
 	</script>
+
 </body>
+
 </html>

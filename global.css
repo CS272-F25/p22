@@ -536,3 +536,112 @@ main {
     opacity: 1;
     transform: translateY(0);
 }
+
+/* =========================================
+   FILTER BAR
+========================================= */
+.filter-bar {
+    display: flex;
+    gap: 1rem;
+    margin: 2rem auto;
+    width: 95%;
+    justify-content: flex-start;
+}
+
+.filter-bar select {
+    padding: 0.5rem 0.75rem;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 0.95rem;
+}
+
+/* =========================================
+   GRID LAYOUT
+========================================= */
+#saved-list {
+    width: 95%;
+    margin: auto;
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+@media (max-width: 1300px) {
+    #saved-list { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width: 900px) {
+    #saved-list { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 600px) {
+    #saved-list { grid-template-columns: repeat(1, 1fr); }
+}
+
+/* =========================================
+   CARD STYLE — OLD LOOK BUT CLEANER
+========================================= */
+.saved-card {
+    background: white;
+    padding: 1.25rem 1.5rem;
+    border-radius: 14px;
+    border: 1px solid #d9e2ee;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+    display: flex;
+    flex-direction: column;
+    min-height: 280px;
+}
+
+/* TOP: SUBJECT */
+.saved-header {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 0.2rem;
+}
+
+/* Difficulty */
+.saved-subheader {
+    font-size: 0.95rem;
+    color: #444;
+    margin-bottom: 0.7rem;
+}
+
+/* Horizontal line under header */
+.saved-card hr {
+    border: none;
+    border-top: 1px solid #e2e6ee;
+    margin: 0.6rem 0 0.8rem 0;
+}
+
+/* BODY TEXT */
+.saved-body {
+    flex-grow: 1;
+}
+
+.saved-body p {
+    font-size: 0.95rem;
+    line-height: 1.35rem;
+    margin: 0.4rem 0;
+    text-align: left;       /* <-- old layout style */
+}
+
+/* Labels */
+.saved-body p strong {
+    font-size: 1rem;
+}
+
+/* Answer block spacing */
+.saved-answer {
+    margin-top: 0.8rem;
+}
+
+/* =========================================
+   DATE FOOTER — CONSISTENT AT BOTTOM
+========================================= */
+.saved-footer {
+    margin-top: auto;
+    padding-top: 0.8rem;
+    font-size: 0.9rem;
+    color: #666;
+    border-top: 1px solid #e2e6ee;
+}
