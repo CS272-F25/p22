@@ -4,16 +4,271 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Favourite - Smart Sausage</title>
-	<link rel="stylesheet" href="../global.css">
+	<title>Favourites - Smart Sausage</title>
+
+	<style>
+		/* ===========================================
+		   GLOBAL BASE COLORS (must match global.css)
+		=========================================== */
+
+		:root {
+			--math: #f3cede;
+			--science: #d7dfb6;
+			--geography: #bec7ec;
+			--history: #ebd1b6;
+			--art: #edc8d1;
+			--background: #f0e6da;
+			--math2: #6d1f42;
+			--science2: #627414;
+			--geography2: #46579b;
+			--history2: #ae6c29;
+			--art2: #c0546f;
+			--background2: #e8d8c5;
+		}
+
+		body {
+			font-family: "Segoe UI", sans-serif;
+			margin: 0;
+			padding: 0;
+			padding-top: 80px;
+			background: #f0e6da;
+		}
+
+		/* ----------------------------------------------------------
+		HEADER
+		---------------------------------------------------------- */
+
+		header {
+			background-color: var(--background);
+			position: fixed;
+			top: 0;
+			width: 100%;
+			z-index: 3000;
+			padding: 15px 25px;
+			border-bottom: 2px solid var(--background2);
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+		}
+
+		.left-header {
+			display: flex;
+			align-items: center;
+			gap: 10px;
+		}
+
+		.logo-img {
+			height: 50px;
+		}
+
+		.logo {
+			font-size: 1.4rem;
+			font-weight: bold;
+			color: #333;
+			text-decoration: none;
+		}
+
+		.right-nav {
+			padding-right: 50px;
+		}
+
+		.center-nav a,
+		.right-nav a {
+			text-decoration: none;
+			font-weight: 500;
+			color: #333;
+			margin: 0 15px;
+		}
+
+		.center-nav a:hover,
+		.right-nav a:hover {
+			text-decoration: underline;
+		}
+
+		.divider {
+			color: #555;
+			font-weight: bold;
+		}
+
+
+		/* Filter bar */
+		.filter-bar {
+			display: flex;
+			gap: 1rem;
+			margin: 2rem;
+		}
+
+		select {
+			padding: 0.5rem 0.75rem;
+			border-radius: 6px;
+			border: 1px solid #aaa;
+			font-size: 1rem;
+		}
+
+		/* Saved grid layout */
+		#saved-list {
+			width: 95%;
+			margin: auto;
+			display: grid;
+			gap: 1.5rem;
+			grid-template-columns: repeat(4, 1fr);
+		}
+
+		@media (max-width: 1300px) {
+			#saved-list {
+				grid-template-columns: repeat(3, 1fr);
+			}
+		}
+
+		@media (max-width: 900px) {
+			#saved-list {
+				grid-template-columns: repeat(2, 1fr);
+			}
+		}
+
+		@media (max-width: 600px) {
+			#saved-list {
+				grid-template-columns: repeat(1, 1fr);
+			}
+		}
+
+		/* Base saved card */
+		.saved-card {
+			background: white;
+			padding: 1.25rem 1.5rem;
+			border-radius: 14px;
+			border: 1px solid #d9e2ee;
+			box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+			display: flex;
+			flex-direction: column;
+			min-height: 260px;
+		}
+
+		.saved-header {
+			font-size: 1.3rem;
+			font-weight: 700;
+			margin-bottom: 0.2rem;
+		}
+
+		.saved-subheader {
+			font-size: 0.95rem;
+			color: #555;
+			margin-bottom: 0.7rem;
+		}
+
+		.saved-card hr {
+			border: none;
+			border-top: 1px solid #ddd;
+			margin: 0.6rem 0 0.8rem;
+		}
+
+		/* Footer */
+		.saved-footer {
+			margin-top: auto;
+			padding-top: 0.8rem;
+			font-size: 0.9rem;
+			color: #666;
+			border-top: 1px solid #ccc;
+		}
+
+		/* ===========================================
+		   SUBJECT THEMING (NO HTML EDITS REQUIRED)
+		   JS adds: math-card, science-card, etc.
+		=========================================== */
+
+		.math-card {
+			border: 2px solid var(--math2) !important;
+			color: var(--math2) !important;
+			background: color-mix(in srgb, var(--math) 12%, white);
+		}
+
+		.science-card {
+			border: 2px solid var(--science2) !important;
+			color: var(--science2) !important;
+			background: color-mix(in srgb, var(--science) 12%, white);
+		}
+
+		.geography-card {
+			border: 2px solid var(--geography2) !important;
+			color: var(--geography2) !important;
+			background: color-mix(in srgb, var(--geography) 12%, white);
+		}
+
+		.history-card {
+			border: 2px solid var(--history2) !important;
+			color: var(--history2) !important;
+			background: color-mix(in srgb, var(--history) 12%, white);
+		}
+
+		.art-card {
+			border: 2px solid var(--art2) !important;
+			color: var(--art2) !important;
+			background: color-mix(in srgb, var(--art) 12%, white);
+		}
+
+		/* -----------------------------------------------------
+		   🐶 RUNNING DOG FOOTER (Copied from index.html)
+		----------------------------------------------------- */
+		.chase-footer {
+			position: fixed;
+			bottom: 0;
+			left: 0;
+			width: 100%;
+			height: 80px;
+			background: var(--background);
+			border-top: 2px solid var(--background2);
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			overflow: hidden;
+			z-index: 2000;
+		}
+
+		.chase-lane {
+			position: relative;
+			width: 100%;
+			height: 100%;
+			overflow: hidden;
+		}
+
+		.ball,
+		.dog {
+			position: absolute;
+			bottom: 10px;
+			object-fit: contain;
+		}
+
+		.ball {
+			height: 2.8rem;
+			animation: roll 8s linear infinite;
+		}
+
+		.dog {
+			height: 4rem;
+			animation: chase 8s linear infinite;
+			animation-delay: 1s;
+		}
+
+		@keyframes roll {
+			0% { transform: translateX(-150px); }
+			100% { transform: translateX(120vw); }
+		}
+
+		@keyframes chase {
+			0% { transform: translateX(-200px); }
+			100% { transform: translateX(120vw); }
+		}
+	</style>
+
 </head>
 
 <body>
 
 	<header>
 		<div class="left-header">
-			<img src="../images/logo.png" class="logo-img" alt="Smart Sausage Logo">
-			<a class="logo" href="../index.html">Smart Sausage</a>
+			<img src="../images/logo.png" class="logo-img" alt="Smart Sausage Logo" style="height:50px;">
+			<a class="logo" href="../index.html"
+				style="font-size:1.4rem;font-weight:bold;color:#333;text-decoration:none;">Smart Sausage</a>
 		</div>
 
 		<nav class="center-nav">
@@ -32,22 +287,6 @@
 	</header>
 
 	<main>
-		<!-- 
-		<h2>Saved Flashcards</h2>
-
-		<table id="saved-table" cellpadding="8">
-			<thead>
-				<tr>
-					<th>Subject</th>
-					<th>Difficulty</th>
-					<th>Question</th>
-					<th>Correct Answer</th>
-					<th>Date Saved</th>
-				</tr>
-			</thead>
-			<tbody></tbody>
-		</table> 
-		-->
 
 		<!-- FILTER BAR -->
 		<div class="filter-bar">
@@ -76,17 +315,22 @@
 		</div>
 
 		<!-- SAVED FLASHCARDS -->
-		<div id="saved-list" class="saved-grid"></div>
+		<div id="saved-list"></div>
 
+		<div class="chase-footer">
+			<div class="chase-lane">
+				<img src="../images/ball.png" class="ball" alt="ball">
+				<img src="../images/logo.png" class="dog" alt="dog">
+			</div>
+		</div>
 	</main>
 
 	<script>
-
 		function formatQuestionText(raw) {
 			return raw
-				.replace(/(\d+\.)/g, "<br>$1")   // new lines before each option
-				.replace(/\\n/g, "<br>")         // if API stored \n, convert to <br>
-				.replace(/\s*<br>\s*<br>/g, "<br>") // clean double breaks
+				.replace(/(\d+\.)/g, "<br>$1")
+				.replace(/\\n/g, "<br>")
+				.replace(/\s*<br>\s*<br>/g, "<br>")
 				.trim();
 		}
 
@@ -106,7 +350,6 @@
 				if (subjectFilter !== "all" && item.subject !== subjectFilter) return false;
 				if (difficultyFilter !== "all" && item.difficulty !== difficultyFilter) return false;
 
-				// DATE FILTER
 				const savedDate = new Date(item.date);
 				const diffDays = (now - savedDate) / (1000 * 60 * 60 * 24);
 
@@ -126,36 +369,31 @@
 				const card = document.createElement("div");
 				card.className = "saved-card";
 
+				// ⭐ AUTO-ASSIGN SUBJECT CLASS (NO HTML CHANGES)
+				card.classList.add(item.subject.toLowerCase() + "-card");
+
 				card.innerHTML = `
-    <div class="saved-header">${item.subject}</div>
-    <div class="saved-subheader">${item.difficulty}</div>
-
-    <hr>
-
-    <div class="saved-body">
-        <p><strong>Question:</strong></p>
-        <p>${formatQuestionText(item.question)}</p>
-
-        <hr>
-
-        <p><strong>Answer:</strong></p>
-        <p>${formatQuestionText(item.answer)}</p>
-    </div>
-
-    <div class="saved-footer">Saved on: ${item.date}</div>
-`;
-
+					<div class="saved-header">${item.subject}</div>
+					<div class="saved-subheader">${item.difficulty}</div>
+					<hr>
+					<div class="saved-body">
+						<p><strong>Question:</strong></p>
+						<p>${formatQuestionText(item.question)}</p>
+						<hr>
+						<p><strong>Answer:</strong></p>
+						<p>${formatQuestionText(item.answer)}</p>
+					</div>
+					<div class="saved-footer">Saved on: ${item.date}</div>
+				`;
 
 				list.appendChild(card);
 			});
 		}
 
-		// Attach filter listeners
 		document.getElementById("filter-subject").addEventListener("change", loadSaved);
 		document.getElementById("filter-difficulty").addEventListener("change", loadSaved);
 		document.getElementById("filter-date").addEventListener("change", loadSaved);
 
-		// Load immediately
 		loadSaved();
 	</script>
 

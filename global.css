@@ -1,3 +1,19 @@
+/* global.css */
+:root {
+	--math: #f3cede;
+	--science: #d7dfb6;
+	--geography: #bec7ec;
+	--history: #ebd1b6;
+	--art: #f0c3ce;
+	--background: #f0e6da;
+	--math2: #6d1f42;
+	--science2: #627414;
+	--geography2: #46579b;
+	--history2: #ae6c29;
+	--art2: #a3415a;
+	--background2: #e8d8c5;
+}
+
 /* ----------------------------------------------------------
    GLOBAL + FLASHCARD UI
 ---------------------------------------------------------- */
@@ -7,11 +23,12 @@
 }
 
 body {
-	background-color: #cfe8ff;
+	background-color: var(--background);
 	color: #333333;
 	font-family: "Segoe UI", Roboto, Arial, sans-serif;
 	margin: 0;
 	padding: 0;
+	padding-top: 60px;
 
 	/* Prevent content from being hidden behind fixed dog footer */
 	padding-bottom: 140px;
@@ -56,9 +73,13 @@ button:hover {
 ---------------------------------------------------------- */
 
 header {
-	background-color: #cfe8ff;
+	background-color: var(--background);
+	position: fixed;
+	top: 0;
+	width: 100%;
+	z-index: 3000;
 	padding: 15px 25px;
-	border-bottom: 2px solid #b0d4ff;
+	border-bottom: 2px solid var(--background2);
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -79,6 +100,10 @@ header {
 	font-weight: bold;
 	color: #333;
 	text-decoration: none;
+}
+
+.right-nav {
+	padding-right: 50px;
 }
 
 .center-nav a,
@@ -232,8 +257,8 @@ main {
 	left: 0;
 	width: 100%;
 	height: 80px;
-	background: #cfe8ff;
-	border-top: 2px solid #b0d4ff;
+	background: var(--background);
+	border-top: 2px solid var(--background2);
 
 	display: flex;
 	justify-content: center;
@@ -675,4 +700,278 @@ main {
 	font-size: 0.9rem;
 	color: #666;
 	border-top: 1px solid #e2e6ee;
+}
+
+/* ==========================================================
+   DYNAMIC SUBJECT THEMES
+   Applies different colors depending on body class
+========================================================== */
+
+/* Math theme */
+.subject-math #flashcard,
+.subject-math .mode-btn,
+.subject-math .difficulty-btn,
+.subject-math #controls button {
+	background-color: var(--background) !important;
+}
+
+/* Science theme */
+.subject-science #flashcard,
+.subject-science .mode-btn,
+.subject-science .difficulty-btn,
+.subject-science #controls button {
+	background-color: var(--background) !important;
+}
+
+/* Geography theme */
+.subject-geography #flashcard,
+.subject-geography .mode-btn,
+.subject-geography .difficulty-btn,
+.subject-geography #controls button {
+	background-color: var(--background) !important;
+}
+
+/* History theme */
+.subject-history #flashcard,
+.subject-history .mode-btn,
+.subject-history .difficulty-btn,
+.subject-history #controls button {
+	background-color: var(--background) !important;
+}
+
+/* Art theme */
+.subject-art #flashcard,
+.subject-art .mode-btn,
+.subject-art .difficulty-btn,
+.subject-art #controls button {
+	background-color: var(--background) !important;
+}
+
+/* SUBJECT HEADER COLORS */
+.subject-math header {
+	background-color: var(--math) !important;
+}
+
+.subject-science header {
+	background-color: var(--science) !important;
+}
+
+.subject-geography header {
+	background-color: var(--geography) !important;
+}
+
+.subject-history header {
+	background-color: var(--history) !important;
+}
+
+.subject-art header {
+	background-color: var(--art) !important;
+}
+
+/* SUBJECT HEADER BORDER COLORS */
+.subject-math header {
+	border-bottom: 2px solid var(--math2) !important;
+}
+
+.subject-science header {
+	border-bottom: 2px solid var(--science2) !important;
+}
+
+.subject-geography header {
+	border-bottom: 2px solid var(--geography2) !important;
+}
+
+.subject-history header {
+	border-bottom: 2px solid var(--history2) !important;
+}
+
+.subject-art header {
+	border-bottom: 2px solid var(--art2) !important;
+}
+
+/* ==========================================================
+   SUBJECT TEXT COLORS — apply to entire page
+========================================================== */
+
+.subject-math,
+.subject-math * {
+	color: var(--math2) !important;
+}
+
+.subject-science,
+.subject-science * {
+	color: var(--science2) !important;
+}
+
+.subject-geography,
+.subject-geography * {
+	color: var(--geography2) !important;
+}
+
+.subject-history,
+.subject-history * {
+	color: var(--history2) !important;
+}
+
+.subject-art,
+.subject-art * {
+	color: var(--art2) !important;
+}
+
+/* ================================
+   SUBJECT PAGE BACKGROUND COLORS
+================================ */
+
+.subject-math body,
+.subject-math {
+	background-color: var(--math) !important;
+}
+
+.subject-science body,
+.subject-science {
+	background-color: var(--science) !important;
+}
+
+.subject-geography body,
+.subject-geography {
+	background-color: var(--geography) !important;
+}
+
+.subject-history body,
+.subject-history {
+	background-color: var(--history) !important;
+}
+
+.subject-art body,
+.subject-art {
+	background-color: var(--art) !important;
+}
+
+/* ========================
+   SUBJECT BLOCK THEMING
+======================== */
+
+/* MATH — FIRST BLOCK */
+.subject-block-container:nth-of-type(2) .subject-block {
+	border: 2px solid var(--math2) !important;
+	color: var(--math2) !important;
+}
+
+.subject-block-container:nth-of-type(2) .stat-box {
+	border: 1px solid var(--math2) !important;
+	background: color-mix(in srgb, var(--math) 15%, white) !important;
+}
+
+/* SCIENCE — SECOND BLOCK */
+.subject-block-container:nth-of-type(3) .subject-block {
+	border: 2px solid var(--science2) !important;
+	color: var(--science2) !important;
+}
+
+.subject-block-container:nth-of-type(3) .stat-box {
+	border: 1px solid var(--science2) !important;
+	background: color-mix(in srgb, var(--science) 15%, white) !important;
+}
+
+/* GEOGRAPHY — THIRD BLOCK */
+.subject-block-container:nth-of-type(4) .subject-block {
+	border: 2px solid var(--geography2) !important;
+	color: var(--geography2) !important;
+}
+
+.subject-block-container:nth-of-type(4) .stat-box {
+	border: 1px solid var(--geography2) !important;
+	background: color-mix(in srgb, var(--geography) 15%, white) !important;
+}
+
+/* HISTORY — FOURTH BLOCK */
+.subject-block-container:nth-of-type(5) .subject-block {
+	border: 2px solid var(--history2) !important;
+	color: var(--history2) !important;
+}
+
+.subject-block-container:nth-of-type(5) .stat-box {
+	border: 1px solid var(--history2) !important;
+	background: color-mix(in srgb, var(--history) 15%, white) !important;
+}
+
+/* ART — FIFTH BLOCK */
+.subject-block-container:nth-of-type(6) .subject-block {
+	border: 2px solid var(--art2) !important;
+	color: var(--art2) !important;
+}
+
+.subject-block-container:nth-of-type(6) .stat-box {
+	border: 1px solid var(--art2) !important;
+	background: color-mix(in srgb, var(--art) 15%, white) !important;
+}
+
+/* ========================================================
+   INDEX SUBJECT CARDS — Automatic Theming by Position
+======================================================== */
+
+/* ---------- 1) MATH ---------- */
+.subject-grid .subject-card:nth-of-type(1) {
+	border: 2px solid var(--math2);
+	color: var(--math2);
+	background: color-mix(in srgb, var(--math) 15%, white);
+}
+
+.subject-grid .subject-card:nth-of-type(1):hover {
+	box-shadow: 0 0 12px var(--math2);
+}
+
+/* ---------- 2) SCIENCE ---------- */
+.subject-grid .subject-card:nth-of-type(2) {
+	border: 2px solid var(--science2);
+	color: var(--science2);
+	background: color-mix(in srgb, var(--science) 15%, white);
+}
+
+.subject-grid .subject-card:nth-of-type(2):hover {
+	box-shadow: 0 0 12px var(--science2);
+}
+
+/* ---------- 3) GEOGRAPHY ---------- */
+.subject-grid .subject-card:nth-of-type(3) {
+	border: 2px solid var(--geography2);
+	color: var(--geography2);
+	background: color-mix(in srgb, var(--geography) 15%, white);
+}
+
+.subject-grid .subject-card:nth-of-type(3):hover {
+	box-shadow: 0 0 12px var(--geography2);
+}
+
+/* ---------- 4) HISTORY ---------- */
+.subject-grid .subject-card:nth-of-type(4) {
+	border: 2px solid var(--history2);
+	color: var(--history2);
+	background: color-mix(in srgb, var(--history) 15%, white);
+}
+
+.subject-grid .subject-card:nth-of-type(4):hover {
+	box-shadow: 0 0 12px var(--history2);
+}
+
+/* ---------- 5) ART ---------- */
+.subject-grid .subject-card:nth-of-type(5) {
+	border: 2px solid var(--art2);
+	color: var(--art2);
+	background: color-mix(in srgb, var(--art) 15%, white);
+}
+
+.subject-grid .subject-card:nth-of-type(5):hover {
+	box-shadow: 0 0 12px var(--art2);
+}
+
+/* ---------- 6) RANDOM ---------- */
+.subject-grid .subject-card:nth-of-type(6) {
+	border: 2px solid #444;
+	color: #444;
+	background: #f0f0f0;
+}
+
+.subject-grid .subject-card:nth-of-type(6):hover {
+	box-shadow: 0 0 12px #444;
 }
