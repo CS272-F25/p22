@@ -253,26 +253,38 @@ function refreshQuizControls() {
 }
 
 function checkIfQuizComplete() {
-	const done = Object.values(questionResults).every(q => q.status !== null);
+    const done = Object.values(questionResults).every(q => q.status !== null);
+    if (!done) return;
 
-	if (!done) return;
+    stopQuizTimer();
 
-	stopQuizTimer();
+    // Count correct answers
+    const score = Object.values(questionResults).filter(q => q.status === "correct").length;
 
-	// Count correct answers
-	const score = Object.values(questionResults).filter(q => q.status === "correct").length;
+    // Format time
+    const mins = String(Math.floor(quizSeconds / 60)).padStart(2, '0');
+    const secs = String(quizSeconds % 60).padStart(2, '0');
+    const timeFormatted = `${mins}:${secs}`;
 
-	// Convert quizSeconds → MM:SS
-	const mins = String(Math.floor(quizSeconds / 60)).padStart(2, '0');
-	const secs = String(quizSeconds % 60).padStart(2, '0');
-	const timeFormatted = `${mins}:${secs}`;
+    // Save to localStorage (your existing code)
+    saveQuizResultsToLocalStorage("Art", currentDifficulty, score, timeFormatted);
 
-	// Save to localStorage
-	saveQuizResultsToLocalStorage("Art", currentDifficulty, score, timeFormatted);
+    // SHOW POPUP
+    const popup = document.getElementById("quiz-popup");
+    const scoreEl = document.getElementById("popup-score");
+    const timeEl = document.getElementById("popup-time");
 
-	console.log("Quiz Complete → Saved:", score, timeFormatted);
+    scoreEl.textContent = `Score: ${score} / 10`;
+    timeEl.textContent = `Time: ${timeFormatted}`;
 
-	refreshQuizControls();
+    popup.classList.remove("hidden");
+
+    // Close button
+    document.getElementById("popup-close").onclick = () => {
+        popup.classList.add("hidden");
+    };
+
+    console.log("Quiz Complete → Popup shown");
 }
 
 function setDifficulty(level) {
